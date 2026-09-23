@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Node Inventory: an OpenNMS UI-extension plugin that renders icons from the shared
+  folder (/opennms/assets/shared/) instead of bundling its own copies.
+  Layout follows the OIA 1.6.1 example-kar-plugin archetype:
+    plugin/          OSGi bundle: UIExtension service + the built Vue module
+    karaf-features/  features.xml (filtered, attached as an xml artifact)
+    assembly/kar/    packs the feature into a .kar you drop into $OPENNMS_HOME/deploy
+    ui/              Vite project; "npm run build" writes into plugin/src/main/resources/node-inventory/
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example.opennms.lab</groupId>
+    <artifactId>node-inventory-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Lab :: Shared Assets :: Node Inventory :: Parent</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>11</java.version>
+        <!-- Compile against the Integration API version your OpenNMS ships.
+             Horizon 33.1.8 ships OIA 1.6.1 (property opennmsApiVersion in its root pom). -->
+        <opennms.api.version>1.6.1</opennms.api.version>
+        <!-- Horizon 33.1.8 runs Apache Karaf 4.3.10. -->
+        <karaf.version>4.3.10</karaf.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.opennms.integration.api</groupId>
+                <artifactId>api</artifactId>
+                <version>${opennms.api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>5.1.9</version>
+                    <extensions>true</extensions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.13.0</version>
+                    <configuration>
+                        <release>${java.version}</release>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>3.6.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.karaf.tooling</groupId>
+                    <artifactId>karaf-maven-plugin</artifactId>
+                    <version>${karaf.version}</version>
+                    <extensions>true</extensions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <modules>
+        <module>plugin</module>
+        <module>karaf-features</module>
+        <module>assembly</module>
+    </modules>
+</project>

@@ -1,0 +1,71 @@
+# OpenNMS Horizon 33.1.8 + PostgreSQL, with ONE host folder of UI assets shared by every plugin.
+#
+#   cp .env.example .env        # optional, defaults below work as-is
+#   podman-compose up -d        # or: docker compose up -d
+#   open http://localhost:8980/opennms   (admin / admin)
+#
+# The only line this lab is really about is the first volume of "horizon".
+name: onms-shared-assets
+
+services:
+  database:
+    image: docker.io/library/postgres:${POSTGRES_VERSION:-15}
+    container_name: onms-shared-assets-db
+    environment:
+      TZ: ${TZ:-Europe/Stockholm}
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  horizon:
+    image: docker.io/opennms/horizon:${OPENNMS_VERSION:-33.1.8}
+    container_name: onms-shared-assets-horizon
+    depends_on:
+      database:
+        condition: service_healthy   # older podman-compose releases ignore the condition;
+    restart: on-failure              # the restart policy covers a too-early start.
+    command: ["-s"]                  # entrypoint: init/upgrade DB + config, then start
+    environment:
+      TZ: ${TZ:-Europe/Stockholm}
+      # read by confd in the image (opennms-datasources.xml.tmpl)
+      POSTGRES_HOST: database
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      OPENNMS_DBNAME: opennms
+      OPENNMS_DBUSER: opennms
+      OPENNMS_DBPASS: ${OPENNMS_DBPASS:-opennms}
+      JAVA_OPTS: ${JAVA_OPTS:--Xms1g -Xmx2g -XX:MaxMetaspaceSize=512m}
+    ports:
+      - "${ONMS_HTTP_PORT:-8980}:8980"
+      - "127.0.0.1:${ONMS_KARAF_SSH_PORT:-8101}:8101"   # Karaf shell: ssh -p 8101 admin@localhost
+    volumes:
+      # (1) THE SHARED FOLDER. Bind-mounted read-only INTO the "opennms" webapp directory, so
+      #     Jetty's DefaultServlet serves it at http://<host>:8980/opennms/assets/shared/...
+      #     Live: a file you drop into ./shared-assets is served on the very next request.
+      #     /usr/share/opennms is OPENNMS_HOME in the image (/opt/opennms is a symlink to it).
+      #     ",z" relabels for SELinux (Fedora/RHEL hosts); it is ignored where SELinux is off.
+      - ./shared-assets:/usr/share/opennms/jetty-webapps/opennms/assets/shared:ro,z
+      # (2) Overlay: the entrypoint rsyncs /opt/opennms-overlay/* into OPENNMS_HOME at START
+      #     (a copy, NOT live). scripts/build-plugins.sh puts the demo KARs in overlay/deploy/.
+      #     Never put files for assets/shared in here: rsync would try to write into mount (1).
+      - ./overlay:/opt/opennms-overlay:ro,z
+      - onms-etc:/opt/opennms/etc
+      - onms-data:/opennms-data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8980/opennms/rest/health/probe | grep -q 'Everything is awesome'"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+      start_period: 180s
+
+volumes:
+  pgdata: {}
+  onms-etc: {}
+  onms-data: {}
