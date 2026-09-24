@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Convenience aggregator: "mvn -f plugins/pom.xml package" builds both demo plugins.
+     Each plugin is still a self-contained project that knows nothing about the other;
+     the only thing they share is the URL contract /opennms/assets/shared/. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.example.opennms.lab</groupId>
+    <artifactId>shared-assets-demo-plugins</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Lab :: Shared Assets :: Demo plugins (aggregator)</name>
+
+    <modules>
+        <module>node-inventory</module>
+        <module>icon-catalog</module>
+    </modules>
+</project>
