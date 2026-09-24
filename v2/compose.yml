@@ -1,0 +1,94 @@
+# OpenNMS Horizon 33.1.8 + PostgreSQL 15, with two host folders that make the plugin work easy:
+#   ./shared-assets  images and icons, served LIVE by Jetty at /opennms/assets/shared/
+#   ./deploy         plugin KARs, installed LIVE by Karaf (drop in = install, delete = uninstall)
+#
+#   cp .env.example .env              # then set your own passwords
+#   podman-compose up -d              # or: docker compose up -d
+#   scripts/wait-for-opennms.sh       # returns when the web UI is ready
+#   open http://localhost:8980/opennms   (admin / admin; you are asked to change it)
+#
+# docs/00-install-opennms-and-postgresql.md explains every line, and does the same with plain
+# "podman run" commands.
+name: onms-shared-assets
+
+services:
+  database:
+    image: ${POSTGRES_IMAGE:-docker.io/library/postgres}:${POSTGRES_VERSION:-15}
+    container_name: onms-shared-assets-db
+    restart: unless-stopped
+    environment:
+      TZ: ${TZ:-Europe/Stockholm}
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # No "ports:" on purpose: only Horizon talks to the database, over the project network.
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  horizon:
+    image: ${HORIZON_IMAGE:-docker.io/opennms/horizon}:${OPENNMS_VERSION:-33.1.8}
+    container_name: onms-shared-assets-horizon
+    depends_on:
+      database:
+        condition: service_healthy   # start only when PostgreSQL accepts connections
+    restart: unless-stopped          # also covers compose tools that ignore the condition above
+    command: ["-s"]                  # entrypoint: create/upgrade the database and config, then start
+    stop_grace_period: 1m            # give Karaf and the database connections time to close
+    sysctls:
+      # OpenNMS runs as uid/gid 10001 and pings without root through ICMP "ping sockets",
+      # which the kernel allows only for the groups in this range. Docker already allows every
+      # group; Podman allows only group 0, so without this line the self-monitoring node
+      # (discovered by ping at 127.0.0.1) never appears.
+      net.ipv4.ping_group_range: "10001 10001"
+    environment:
+      TZ: ${TZ:-Europe/Stockholm}
+      # Read by confd in the image, which writes etc/opennms-datasources.xml at every start.
+      # POSTGRES_* is the admin account used to create the database; OPENNMS_DB* is the account
+      # OpenNMS creates and then uses at runtime.
+      POSTGRES_HOST: database
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      OPENNMS_DBNAME: opennms
+      OPENNMS_DBUSER: opennms
+      OPENNMS_DBPASS: ${OPENNMS_DBPASS:-opennms}
+      JAVA_OPTS: ${JAVA_OPTS:--Xms1g -Xmx2g -XX:MaxMetaspaceSize=512m}
+    ports:
+      # Web UI and REST API. 127.0.0.1 = this machine only; set ONMS_HTTP_BIND=0.0.0.0 in .env to
+      # open it to your network, after you have changed the admin password.
+      - "${ONMS_HTTP_BIND:-127.0.0.1}:${ONMS_HTTP_PORT:-8980}:8980"
+      # Karaf shell: ssh -p 8101 admin@localhost (same accounts as the web UI)
+      - "127.0.0.1:${ONMS_KARAF_SSH_PORT:-8101}:8101"
+    volumes:
+      # (1) THE SHARED ASSETS FOLDER. Bind-mounted read-only INTO the "opennms" web application,
+      #     so Jetty's DefaultServlet serves it at http://<host>:8980/opennms/assets/shared/...
+      #     A file you drop into ./shared-assets is served on the very next request.
+      #     /usr/share/opennms is OPENNMS_HOME in the image (/opt/opennms is a symlink to it).
+      #     ",z" relabels for SELinux (Fedora/RHEL hosts); it is ignored where SELinux is off.
+      - ./shared-assets:/usr/share/opennms/jetty-webapps/opennms/assets/shared:ro,z
+      # (2) THE PLUGIN DEPLOY FOLDER. A second Karaf deploy watcher (configured by (3)) polls it
+      #     every second: a new .kar is installed, a replaced one reinstalled, a deleted one
+      #     uninstalled. scripts/deploy-plugin.sh and scripts/undeploy-plugin.sh use it.
+      - ./deploy:/opt/opennms-lab-deploy:ro,z
+      # (3) etc overlay: the entrypoint copies these files into $OPENNMS_HOME/etc at every start.
+      #     It holds only org.apache.felix.fileinstall-lab.cfg, which creates watcher (2).
+      - ./etc-overlay:/opt/opennms-etc-overlay:ro,z
+      # Persistent state: configuration (etc) and data (RRD files, reports, MIBs).
+      - onms-etc:/opt/opennms/etc
+      - onms-data:/opennms-data
+    healthcheck:
+      # The image's own /health.sh passes "-sSF" to curl, which curl rejects, so call curl here.
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8980/opennms/rest/health/probe | grep -q 'Everything is awesome'"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+      start_period: 180s
+
+volumes:
+  pgdata: {}
+  onms-etc: {}
+  onms-data: {}
