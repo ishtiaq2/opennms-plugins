@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="880" viewBox="0 0 1100 880" role="img" aria-labelledby="t d">
+<title id="t">One process, many class loaders, many threads</title>
+<desc id="d">Plugins and bundles are not processes: they are class loaders and objects inside the one JVM. A request runs on one Jetty thread from the socket to a plugin&#x27;s JAR and back, crossing several class loaders on the way.</desc>
+<defs><marker id="a94a3b8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker><marker id="a7c3aed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="a334155" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker></defs>
+<rect x="0.5" y="0.5" width="1099" height="879" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="24" y="36" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="21" font-weight="bold" fill="#0f172a">One process, many class loaders, many threads</text>
+<text x="24" y="59" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">Plugins and bundles are not processes: they are class loaders and objects inside the one JVM. A request runs on one</text>
+<text x="24" y="78" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">Jetty thread from the socket to a plugin&#x27;s JAR and back, crossing several class loaders on the way.</text>
+<rect x="24" y="114" width="536" height="580" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="38" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Class loaders: each one reads from the places listed</text>
+<rect x="40" y="154" width="504" height="44" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="292.0" y="175.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="middle" fill="#334155"><tspan>JDK: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">java.*</tspan><tspan> and the other platform classes</tspan></text>
+<rect x="40" y="212" width="504" height="44" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="292.0" y="233.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="middle" fill="#0f172a"><tspan>application loader: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">lib/opennms_bootstrap.jar</tspan></text>
+<rect x="40" y="270" width="504" height="70" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+<text x="52" y="292" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#064e3b">lib/ loader (Bootstrap&#x27;s URLClassLoader)</text>
+<text x="52" y="310.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#064e3b"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">lib/*.jar</tspan><tspan>, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/</tspan><tspan>: daemons, Spring, Hibernate, Jetty, Karaf Main</tspan></text>
+<rect x="40" y="364" width="240" height="96" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="52" y="386" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c2d12">Web app loader</text>
+<text x="52" y="404.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12"><tspan>Jetty&#x27;s </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">WebAppClassLoader</tspan><tspan>:</tspan></text>
+<text x="52" y="422.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">WEB-INF/classes</tspan><tspan>,</tspan></text>
+<text x="52" y="440.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">WEB-INF/lib</tspan><tspan> of </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">/opennms</tspan></text>
+<rect x="304" y="364" width="240" height="96" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="316" y="386" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">Karaf launcher loader</text>
+<text x="316" y="404.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">the Felix framework JAR;</text>
+<text x="316" y="422.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">everything else</text>
+<text x="316" y="440.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">from its parent</text>
+<path d="M160,362 L160,342" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#a94a3b8)" stroke-linejoin="round"/>
+<path d="M424,362 L424,342" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#a94a3b8)" stroke-linejoin="round"/>
+<path d="M292,268 L292,258" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#a94a3b8)" stroke-linejoin="round"/>
+<path d="M292,210 L292,200" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#a94a3b8)" stroke-linejoin="round"/>
+<rect x="40" y="484" width="504" height="194" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="54" y="506" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">Felix: one class loader per bundle</text>
+<rect x="56" y="520" width="472" height="34" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="292.0" y="540.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#0f172a">system bundle (0): classes via the launcher loader</text>
+<path d="M424,518 L424,462" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#a94a3b8)" stroke-linejoin="round"/>
+<rect x="56" y="608" width="72" height="34" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="92.0" y="628.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#4c1d95">OIA API</text>
+<rect x="140" y="608" width="88" height="34" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="184.0" y="628.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#4c1d95">api-layer</text>
+<rect x="240" y="608" width="110" height="34" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="295.0" y="628.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#4c1d95">ui-extension</text>
+<rect x="362" y="608" width="80" height="34" rx="9" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="402.0" y="628.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#1e3a8a">Plugin A</text>
+<rect x="454" y="608" width="80" height="34" rx="9" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="494.0" y="628.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#1e3a8a">Plugin B</text>
+<path d="M402.0,644 L402.0,654" fill="none" stroke="#7c3aed" stroke-width="1.3" stroke-dasharray="4 3" stroke-linejoin="round"/>
+<path d="M494.0,644 L494.0,654" fill="none" stroke="#7c3aed" stroke-width="1.3" stroke-dasharray="4 3" stroke-linejoin="round"/>
+<path d="M494.0,654 L92.0,654 L92.0,646" fill="none" stroke="#7c3aed" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="195.7" y="656.5" width="106.6" height="21.0" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="249.0" y="670.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="11.5" font-weight="normal" text-anchor="middle" fill="#7c3aed">Import-Package</text>
+<path d="M184.0,606 L184.0,556" fill="none" stroke="#7c3aed" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="580" y="114" width="496" height="580" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="594" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">One request, one thread (a qtp thread)</text>
+<rect x="596" y="154" width="464" height="50" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+<text x="608" y="174.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#064e3b"><tspan>Jetty: connector, handlers, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">/opennms</tspan><tspan> context</tspan></text>
+<text x="608" y="191.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#064e3b"><tspan>from </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">lib/</tspan></text>
+<rect x="596" y="218" width="464" height="50" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="608" y="238.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#7c2d12">filter chain: headers, Spring Security, ...</text>
+<text x="608" y="255.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#7c2d12">web app</text>
+<path d="M828,204 L828,216" fill="none" stroke="#334155" stroke-width="1.8" marker-end="url(#a334155)" stroke-linejoin="round"/>
+<rect x="596" y="282" width="464" height="50" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="608" y="302.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#7c2d12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">ProxyFilter</tspan><tspan>: the path is claimed in OSGi</tspan></text>
+<text x="608" y="319.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#7c2d12">web app</text>
+<path d="M828,268 L828,280" fill="none" stroke="#334155" stroke-width="1.8" marker-end="url(#a334155)" stroke-linejoin="round"/>
+<rect x="596" y="346" width="464" height="50" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="608" y="366.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">Felix HTTP bridge: the dispatcher servlet</text>
+<text x="608" y="383.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">a bundle</text>
+<path d="M828,332 L828,344" fill="none" stroke="#334155" stroke-width="1.8" marker-end="url(#a334155)" stroke-linejoin="round"/>
+<rect x="596" y="410" width="464" height="50" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="608" y="430.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">JAX-RS connector: finds the resource</text>
+<text x="608" y="447.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">bundles</text>
+<path d="M828,396 L828,408" fill="none" stroke="#334155" stroke-width="1.8" marker-end="url(#a334155)" stroke-linejoin="round"/>
+<rect x="596" y="474" width="464" height="50" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="608" y="494.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">UIExtensionServiceImpl</tspan><tspan>: the module file</tspan></text>
+<text x="608" y="511.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">ui-extension</text>
+<path d="M828,460 L828,472" fill="none" stroke="#334155" stroke-width="1.8" marker-end="url(#a334155)" stroke-linejoin="round"/>
+<rect x="596" y="538" width="464" height="50" rx="9" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="608" y="558.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">Bundle.getResource(...)</tspan><tspan> in plugin A&#x27;s JAR</tspan></text>
+<text x="608" y="575.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a">plugin A</text>
+<path d="M828,524 L828,536" fill="none" stroke="#334155" stroke-width="1.8" marker-end="url(#a334155)" stroke-linejoin="round"/>
+<rect x="596" y="614" width="464" height="54" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="608" y="634.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">and back up the same stack with the response: no process</text>
+<text x="608" y="651.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">boundary, no copy of the objects, one call stack</text>
+<rect x="24" y="714" width="1052" height="144" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="38" y="736" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Threads you will meet (scripts/karaf.sh shell:threads lists the live ones)</text>
+<rect x="40" y="752" width="163" height="90" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="52" y="773" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">Main</tspan></text>
+<text x="52" y="791.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">the start-up, then</text>
+<text x="52" y="808.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">it ends</text>
+<rect x="211" y="752" width="163" height="90" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="223" y="773" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">qtp&lt;id&gt;-&lt;n&gt;</tspan></text>
+<text x="223" y="791.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">Jetty: one per</text>
+<text x="223" y="808.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">request running</text>
+<rect x="382" y="752" width="163" height="90" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="394" y="773" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">FelixStartLevel</tspan></text>
+<text x="394" y="791.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">starts and stops</text>
+<text x="394" y="808.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">bundles by level</text>
+<rect x="553" y="752" width="163" height="90" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="565" y="773" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">FelixDispatchQueue</tspan></text>
+<text x="565" y="791.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">delivers framework</text>
+<text x="565" y="808.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">and bundle events</text>
+<rect x="724" y="752" width="163" height="90" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="736" y="773" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">fileinstall-&lt;dir&gt;</tspan></text>
+<text x="736" y="791.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">one per watched</text>
+<text x="736" y="808.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">folder</text>
+<rect x="895" y="752" width="163" height="90" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="907" y="773" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#0f172a">daemon threads</text>
+<text x="907" y="791.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">pollers, collectors</text>
+<text x="907" y="808.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">and many more</text>
+</svg>

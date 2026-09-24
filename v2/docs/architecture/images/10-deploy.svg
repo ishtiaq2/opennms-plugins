@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="940" viewBox="0 0 1100 940" role="img" aria-labelledby="t d">
+<title id="t">Deploying a plugin: from a file on your disk to a menu entry</title>
+<desc id="d">What happens, in order, after scripts/deploy-plugin.sh copies a KAR into ./deploy (no restart). Each column is a part of the one process, except the first; each blue number is one step of Step 10.</desc>
+<defs><marker id="a2563eb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="a7c3aed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="aea580c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ea580c"/></marker></defs>
+<rect x="0.5" y="0.5" width="1099" height="939" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="24" y="36" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="21" font-weight="bold" fill="#0f172a">Deploying a plugin: from a file on your disk to a menu entry</text>
+<text x="24" y="59" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">What happens, in order, after scripts/deploy-plugin.sh copies a KAR into ./deploy (no restart). Each column is a part</text>
+<text x="24" y="78" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">of the one process, except the first; each blue number is one step of Step 10.</text>
+<rect x="69.0" y="114" width="116.5" height="58" rx="9" fill="#f3f4f6" stroke="#6b7280" stroke-width="1.6"/>
+<text x="127.25" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#111827">You</text>
+<text x="127.25" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#111827">host folder</text>
+<line x1="127.2" y1="172" x2="127.2" y2="794" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<rect x="195.5" y="114" width="116.5" height="58" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="253.75" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#4c1d95">FileInstall</text>
+<text x="253.75" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#4c1d95">watcher thread</text>
+<line x1="253.8" y1="172" x2="253.8" y2="794" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<rect x="322.0" y="114" width="116.5" height="58" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="380.25" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#4c1d95">KAR deployer</text>
+<text x="380.25" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#4c1d95">KarService</text>
+<line x1="380.2" y1="172" x2="380.2" y2="794" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<rect x="448.5" y="114" width="116.5" height="58" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="506.75" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#4c1d95">Features</text>
+<text x="506.75" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#4c1d95">service</text>
+<line x1="506.8" y1="172" x2="506.8" y2="794" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<rect x="575.0" y="114" width="116.5" height="58" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="633.25" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#4c1d95">Felix</text>
+<text x="633.25" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#4c1d95">framework</text>
+<line x1="633.2" y1="172" x2="633.2" y2="794" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<rect x="701.5" y="114" width="116.5" height="58" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="759.75" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#4c1d95">Blueprint</text>
+<text x="759.75" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#4c1d95">Aries extender</text>
+<line x1="759.8" y1="172" x2="759.8" y2="794" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<rect x="828.0" y="114" width="116.5" height="58" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="886.25" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#4c1d95">api-layer</text>
+<text x="886.25" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#4c1d95">UI registry</text>
+<line x1="886.2" y1="172" x2="886.2" y2="794" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<rect x="954.5" y="114" width="116.5" height="58" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="1012.75" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#7c2d12">REST + UI</text>
+<text x="1012.75" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#7c2d12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.2">/rest/plugins</tspan></text>
+<line x1="1012.8" y1="172" x2="1012.8" y2="794" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<path d="M129.53333333333333,214 L246.8,214" fill="none" stroke="#2563eb" stroke-width="1.8" marker-end="url(#a2563eb)" stroke-linejoin="round"/>
+<rect x="90.7" y="189.5" width="199.7" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="190.5" y="204.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#2563eb"><tspan>copy a </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">.kar</tspan><tspan> into </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">./deploy/</tspan></text>
+<path d="M256.1333333333333,264 L373.2,264" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="209.7" y="239.5" width="214.7" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="317.0" y="254.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#7c3aed"><tspan>sees the new </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">.kar</tspan><tspan>: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">install()</tspan></text>
+<rect x="249" y="286" width="262" height="49" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="261" y="306.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan>unpacks it into </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">data/kar/&lt;name&gt;/</tspan></text>
+<text x="261" y="323.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">and adds its features XML</text>
+<path d="M382.5333333333333,370 L499.8,370" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="286.3" y="345.5" width="314.4" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="443.5" y="360.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#7c3aed"><tspan>install feature </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">opennms-lab-node-inventory</tspan></text>
+<path d="M509.1333333333333,420 L626.2,420" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="460.0" y="395.5" width="220.0" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="570.0" y="410.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#7c3aed">install and start the bundle</text>
+<rect x="487" y="442" width="292" height="49" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="499" y="462.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan>INSTALLED (copied into </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">data/cache/</tspan><tspan>),</tspan></text>
+<text x="499" y="479.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">RESOLVED (imports wired), ACTIVE</text>
+<path d="M635.5333333333334,526 L752.8,526" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="601.5" y="501.5" width="190.0" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="696.5" y="516.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#7c3aed">bundle is ACTIVE (event)</text>
+<rect x="624" y="548" width="272" height="49" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="636" y="568.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan>reads </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">OSGI-INF/blueprint/*.xml</tspan><tspan>,</tspan></text>
+<text x="636" y="585.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan>creates the </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">UIExtension</tspan><tspan> bean</tspan></text>
+<path d="M757.4666666666666,632 L640.2,632" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="570.0" y="607.5" width="253.0" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="696.5" y="622.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#7c3aed"><tspan>registers the </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">UIExtension</tspan><tspan> service</tspan></text>
+<path d="M635.5333333333334,682 L879.2,682" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="670.1" y="657.5" width="179.2" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="759.7" y="672.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#7c3aed"><tspan>service event: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">onBind()</tspan></text>
+<path d="M1010.4666666666666,732 L893.2,732" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<rect x="883.4" y="707.5" width="132.2" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="949.5" y="722.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#ea580c"><tspan>GET </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">/rest/plugins</tspan></text>
+<path d="M888.5333333333334,774 L1005.8,774" fill="none" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<rect x="824.0" y="749.5" width="251.0" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="949.5" y="764.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#ea580c"><tspan>the list now has </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">labNodeInventory</tspan></text>
+<circle cx="36" cy="210" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="214.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">1</text>
+<circle cx="36" cy="260" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="264.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">2</text>
+<circle cx="36" cy="296" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="300.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">3</text>
+<circle cx="36" cy="366" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="370.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">4</text>
+<circle cx="36" cy="416" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="420.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">5</text>
+<circle cx="36" cy="452" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="456.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">6</text>
+<circle cx="36" cy="522" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="526.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">7</text>
+<circle cx="36" cy="558" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="562.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">8</text>
+<circle cx="36" cy="628" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="632.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">9</text>
+<circle cx="36" cy="678" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="682.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">10</text>
+<circle cx="36" cy="728" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="732.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">11</text>
+<circle cx="36" cy="770" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="774.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">12</text>
+<rect x="24" y="814" width="526" height="96" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="36" y="836" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#334155">Delete or replace the file</text>
+<text x="36" y="854.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">delete: the KAR, its features and the bundle are uninstalled;</text>
+<text x="36" y="871.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan>the service disappears and </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">onUnbind()</tspan><tspan> drops the plugin.</tspan></text>
+<text x="36" y="888.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">replace: uninstall, then install the new file.</text>
+<rect x="566" y="814" width="510" height="96" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="578" y="836" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#334155">In logs/karaf.log</text>
+<text x="578" y="854.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">Installing KAR file /opt/opennms-lab-deploy/...</tspan></text>
+<text x="578" y="871.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">Adding features: opennms-lab-node-inventory/...</tspan></text>
+<text x="578" y="888.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">Done.</tspan></text>
+</svg>

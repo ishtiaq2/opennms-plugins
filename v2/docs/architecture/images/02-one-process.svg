@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="736" viewBox="0 0 1100 736" role="img" aria-labelledby="t d">
+<title id="t">From container start to one Java process</title>
+<desc id="d">What /entrypoint.sh -s runs, and how lib/opennms_bootstrap.jar becomes the running OpenNMS. Blue circles give the order of events; dashed boxes are short-lived processes that exit.</desc>
+<defs><marker id="a334155" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker></defs>
+<rect x="0.5" y="0.5" width="1099" height="735" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="24" y="36" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="21" font-weight="bold" fill="#0f172a">From container start to one Java process</text>
+<text x="24" y="59" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">What /entrypoint.sh -s runs, and how lib/opennms_bootstrap.jar becomes the running OpenNMS.</text>
+<text x="24" y="78" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">Blue circles give the order of events; dashed boxes are short-lived processes that exit.</text>
+<rect x="24" y="114" width="500" height="520" rx="12" fill="#f8fafc" stroke="#64748b" stroke-width="1.8" stroke-dasharray="7 5"/>
+<text x="38" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">In the container: /entrypoint.sh -s, as uid 10001</text>
+<rect x="44" y="158" width="460" height="88" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="68" y="180" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#334155">Prepare etc/</text>
+<text x="56" y="198.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155"><tspan>empty volume? copy </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc-pristine/</tspan><tspan> into it,</tspan></text>
+<text x="56" y="216.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155">fill confd templates, then copy the overlays</text>
+<text x="56" y="234.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155"><tspan>(the lab&#x27;s </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc-overlay/</tspan><tspan> goes into </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/</tspan><tspan>)</tspan></text>
+<circle cx="48" cy="162" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="48" y="166.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="44" y="266" width="460" height="106" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="68" y="288" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Config tester, a short Java process</text>
+<text x="56" y="306.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">java -Dopennms.manager.class=...ConfigTester</tspan></text>
+<text x="56" y="324.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">     -jar lib/opennms_bootstrap.jar -a</tspan></text>
+<text x="56" y="342.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">checks the configuration files, then exits;</text>
+<text x="56" y="360.67" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">an error stops the container here</text>
+<circle cx="48" cy="270" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="48" y="274.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">2</text>
+<rect x="44" y="392" width="460" height="106" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="68" y="414" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Installer, only when etc/configured is missing</text>
+<text x="56" y="432.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">java -cp lib/opennms_bootstrap.jar</tspan></text>
+<text x="56" y="450.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">     org.opennms.bootstrap.InstallerBootstrap</tspan></text>
+<text x="56" y="468.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">creates or upgrades the database schema,</text>
+<text x="56" y="486.67" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>writes </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/configured</tspan><tspan>, then exits</tspan></text>
+<circle cx="48" cy="396" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="48" y="400.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">3</text>
+<rect x="44" y="518" width="460" height="96" rx="9" fill="#ffffff" stroke="#0f172a" stroke-width="2.4"/>
+<text x="68" y="540" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">The long-running process</text>
+<text x="56" y="558.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">exec java ... -jar lib/opennms_bootstrap.jar start</tspan></text>
+<text x="56" y="576.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">exec</tspan><tspan>: the shell replaces itself with Java, which</tspan></text>
+<text x="56" y="594.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">is now PID 1 and runs until the container stops.</text>
+<circle cx="48" cy="522" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="48" y="526.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">4</text>
+<path d="M274,246 L274,264" fill="none" stroke="#334155" stroke-width="1.8" marker-end="url(#a334155)" stroke-linejoin="round"/>
+<path d="M274,372 L274,390" fill="none" stroke="#334155" stroke-width="1.8" marker-end="url(#a334155)" stroke-linejoin="round"/>
+<path d="M274,498 L274,516" fill="none" stroke="#334155" stroke-width="1.8" marker-end="url(#a334155)" stroke-linejoin="round"/>
+<rect x="548" y="114" width="528" height="520" rx="12" fill="#ffffff" stroke="#0f172a" stroke-width="2.4"/>
+<text x="562" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Inside the JVM</text>
+<rect x="568" y="158" width="488" height="160" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="592" y="180" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Bootstrap.main()</text>
+<text x="580" y="198.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>finds </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">opennms.home</tspan><tspan> and reads these files into system</tspan></text>
+<text x="580" y="216.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>properties (a </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">-D</tspan><tspan> option wins over a file):</tspan></text>
+<text x="580" y="234.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">jetty-webapps/opennms/WEB-INF/version.properties</tspan><tspan>,</tspan></text>
+<text x="580" y="252.67" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/bootstrap.properties</tspan><tspan>,</tspan></text>
+<text x="580" y="270.61" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/rrd-configuration.properties</tspan><tspan>, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/libraries.properties</tspan><tspan>,</tspan></text>
+<text x="580" y="288.54999999999995" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/opennms.properties</tspan><tspan>, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/opennms.properties.d/*.properties</tspan></text>
+<circle cx="572" cy="162" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="572" y="166.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">5</text>
+<rect x="568" y="336" width="488" height="72" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="592" y="358" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Builds the lib/ class loader</text>
+<text x="580" y="376.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>a </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">URLClassLoader</tspan><tspan> over </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">lib/endorsed/</tspan><tspan>, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">classes/</tspan><tspan>, every</tspan></text>
+<text x="580" y="394.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">lib/*.jar</tspan><tspan> and </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/</tspan><tspan>: all of OpenNMS&#x27;s code</tspan></text>
+<circle cx="572" cy="340" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="572" y="344.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">6</text>
+<rect x="568" y="426" width="488" height="90" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="592" y="448" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Starts a thread named &quot;Main&quot;</text>
+<text x="580" y="466.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>loads </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">Controller</tspan><tspan> through that class loader and calls its</tspan></text>
+<text x="580" y="484.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">main(&quot;start&quot;)</tspan><tspan> on the new thread; </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">logs/opennms.pid</tspan><tspan> gets</tspan></text>
+<text x="580" y="502.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">the PID (the config tester reuses this launcher)</text>
+<circle cx="572" cy="430" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="572" y="434.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">7</text>
+<rect x="568" y="534" width="488" height="80" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+<text x="592" y="556" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#064e3b">Controller &gt; Starter &gt; Invoker</text>
+<text x="580" y="574.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#064e3b"><tspan>logs to </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">logs/manager.log</tspan><tspan> and starts the services listed in</tspan></text>
+<text x="580" y="592.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#064e3b"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/service-configuration.xml</tspan><tspan> (Step 3)</tspan></text>
+<circle cx="572" cy="538" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="572" y="542.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">8</text>
+<path d="M812,318 L812,334" fill="none" stroke="#334155" stroke-width="1.8" marker-end="url(#a334155)" stroke-linejoin="round"/>
+<path d="M812,408 L812,424" fill="none" stroke="#334155" stroke-width="1.8" marker-end="url(#a334155)" stroke-linejoin="round"/>
+<path d="M812,516 L812,532" fill="none" stroke="#334155" stroke-width="1.8" marker-end="url(#a334155)" stroke-linejoin="round"/>
+<path d="M504,566 L536,566 L536,238 L566,238" fill="none" stroke="#334155" stroke-width="1.8" marker-end="url(#a334155)" stroke-linejoin="round"/>
+<rect x="24" y="654" width="1052" height="64" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="36" y="675.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155">Everything after this point runs inside this one process: the daemons, Jetty, the web application, Karaf, Felix,</text>
+<text x="36" y="692.94" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155">every bundle and every plugin. They are objects and threads that share one heap and one PID, not processes of their own.</text>
+</svg>

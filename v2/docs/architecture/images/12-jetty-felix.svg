@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="948" viewBox="0 0 1100 948" role="img" aria-labelledby="t d">
+<title id="t">Jetty and Felix: how a request gets from the network into OSGi</title>
+<desc id="d">The only way in is Jetty&#x27;s port. The ProxyFilter, last in the web app&#x27;s filter chain, sends paths that OSGi has claimed to the Felix HTTP bridge; the bridge opens no port of its own and runs on Jetty&#x27;s request thread.</desc>
+<defs><marker id="aea580c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ea580c"/></marker><marker id="a7c3aed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker></defs>
+<rect x="0.5" y="0.5" width="1099" height="947" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="24" y="36" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="21" font-weight="bold" fill="#0f172a">Jetty and Felix: how a request gets from the network into OSGi</text>
+<text x="24" y="59" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">The only way in is Jetty&#x27;s port. The ProxyFilter, last in the web app&#x27;s filter chain, sends paths that OSGi has claimed</text>
+<text x="24" y="78" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">to the Felix HTTP bridge; the bridge opens no port of its own and runs on Jetty&#x27;s request thread.</text>
+<rect x="400" y="114" width="300" height="44" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="550.0" y="135.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="middle" fill="#0f172a"><tspan>Browser: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">GET /opennms/...</tspan></text>
+<rect x="400" y="182" width="300" height="58" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="424" y="204" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c2d12">Jetty, port 8980</text>
+<text x="412" y="222.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12"><tspan>context </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">/opennms</tspan><tspan> (Step 4)</tspan></text>
+<circle cx="404" cy="186" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="404" y="190.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="400" y="264" width="300" height="58" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="424" y="286" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c2d12">Filters of the web app</text>
+<text x="412" y="304.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12">Spring Security first (Step 5)</text>
+<circle cx="404" cy="268" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="404" y="272.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">2</text>
+<rect x="330" y="346" width="440" height="100" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="354" y="368" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">ProxyFilter: claimed by OSGi?</text>
+<text x="342" y="386.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">yes if the path matches a JAX-RS resource published</text>
+<text x="342" y="404.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">in OSGi, a whiteboard servlet pattern or a</text>
+<text x="342" y="422.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">whiteboard resource pattern</text>
+<circle cx="334" cy="350" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="334" y="354.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">3</text>
+<path d="M550,158 L550,180" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<path d="M550,240 L550,262" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<path d="M550,322 L550,344" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<path d="M330,396 L274,396 L274,496" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<rect x="197.0" y="462" width="154.0" height="21.6" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="274" y="476.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#ea580c">no: chain.doFilter()</text>
+<path d="M770,396 L826,396 L826,496" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="731.0" y="462" width="190.0" height="21.6" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="826" y="476.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#7c3aed">yes: dispatcher.service()</text>
+<rect x="24" y="498" width="500" height="300" rx="12" fill="#fff7ed" stroke="#ea580c" stroke-width="1.8"/>
+<text x="50" y="520" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c2d12">The web app&#x27;s own servlets</text>
+<circle cx="28" cy="502" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="28" y="506.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">4</text>
+<rect x="40" y="536" width="468" height="70" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="52" y="558" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Apache CXF</text>
+<text x="52" y="576.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">/rest/*</tspan><tspan>, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">/api/v2/*</tspan><tspan>: the OpenNMS REST API</tspan></text>
+<text x="52" y="594.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">(nodes, events, alarms, ...)</text>
+<rect x="40" y="618" width="468" height="70" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="52" y="640" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Spring MVC and JSP</text>
+<text x="52" y="658.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">*.htm</tspan><tspan>, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">*.jsp</tspan><tspan>: the classic UI</tspan></text>
+<rect x="40" y="700" width="468" height="82" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="52" y="722" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">DefaultServlet</text>
+<text x="52" y="740.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>files: the Vue UI in </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">ui/</tspan><tspan>, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">assets/</tspan><tspan>,</tspan></text>
+<text x="52" y="758.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>the lab&#x27;s </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">assets/shared/</tspan><tspan> (Step 14)</tspan></text>
+<rect x="576" y="498" width="500" height="300" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="602" y="520" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">Felix HTTP bridge (a bundle)</text>
+<circle cx="580" cy="502" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="580" y="506.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">5</text>
+<rect x="592" y="536" width="468" height="64" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="604" y="558" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Dispatcher servlet</text>
+<text x="604" y="576.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>an OSGi service (</tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">HttpServlet</tspan><tspan>, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">http.felix.dispatcher</tspan><tspan>)</tspan></text>
+<text x="604" y="594.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">that the ProxyFilter keeps track of</text>
+<rect x="592" y="612" width="468" height="58" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="604" y="634" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">JAX-RS connector (Jersey)</text>
+<text x="604" y="652.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">/rest/plugins</tspan><tspan>, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">/rest/health</tspan><tspan>, ...: resources in bundles</tspan></text>
+<rect x="592" y="680" width="468" height="50" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="604" y="702" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">Whiteboard servlets</text>
+<text x="604" y="720.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan>Vaadin apps, e.g. </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">/admin/wallboard-config/*</tspan></text>
+<rect x="592" y="740" width="468" height="44" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="604" y="761.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">Whiteboard resources: files packed in bundles</text>
+<rect x="24" y="818" width="526" height="110" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="36" y="840" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#334155">How the web app finds Felix</text>
+<text x="36" y="858.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan>WebAppListener put the </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">BundleContext</tspan><tspan> into the servlet</tspan></text>
+<text x="36" y="875.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan>context (Step 6); </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">ServiceTracker</tspan><tspan>s follow the dispatcher,</tspan></text>
+<text x="36" y="892.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">servlets and resources; REST paths come from the</text>
+<text x="36" y="909.875" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">RestEndpointRegistry</tspan><tspan> service</tspan></text>
+<rect x="566" y="818" width="510" height="110" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="578" y="840" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#334155">No second web server</text>
+<text x="578" y="858.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">OSGi servlets run on the Jetty thread, behind the same</text>
+<text x="578" y="875.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">filters and the same login. Other ports in this process</text>
+<text x="578" y="892.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan>are not HTTP: Karaf SSH </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">8101</tspan><tspan>, SNMP traps </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">1162/udp</tspan><tspan>.</tspan></text>
+</svg>

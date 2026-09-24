@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="770" viewBox="0 0 1100 770" role="img" aria-labelledby="t d">
+<title id="t">Jetty inside OpenNMS: one server, one port, several web applications</title>
+<desc id="d">The JettyServer daemon builds the server from jetty.xml in pass 0 and starts it in pass 1. Every request runs through the handlers below on one of Jetty&#x27;s threads; the ContextHandlerCollection picks the web application.</desc>
+<defs><marker id="aea580c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ea580c"/></marker></defs>
+<rect x="0.5" y="0.5" width="1099" height="769" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="24" y="36" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="21" font-weight="bold" fill="#0f172a">Jetty inside OpenNMS: one server, one port, several web applications</text>
+<text x="24" y="59" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">The JettyServer daemon builds the server from jetty.xml in pass 0 and starts it in pass 1. Every request runs</text>
+<text x="24" y="78" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">through the handlers below on one of Jetty&#x27;s threads; the ContextHandlerCollection picks the web application.</text>
+<rect x="24" y="158" width="180" height="90" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="36" y="180" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Clients</text>
+<text x="36" y="198.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">browsers, curl,</text>
+<text x="36" y="216.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">the lab&#x27;s scripts</text>
+<rect x="24" y="414" width="196" height="132" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="36" y="436" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#334155">Not through Jetty</text>
+<text x="36" y="454.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155">own listeners, in the</text>
+<text x="36" y="472.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155">same process:</text>
+<text x="36" y="490.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155"><tspan>Karaf SSH </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">8101</tspan><tspan>,</tspan></text>
+<text x="36" y="508.67" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155"><tspan>SNMP traps </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">1162/udp</tspan></text>
+<rect x="240" y="114" width="540" height="628" rx="12" fill="#fff7ed" stroke="#ea580c" stroke-width="1.8"/>
+<text x="254" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c2d12">Jetty 9.4.57, built from jetty.xml by JettyServer</text>
+<rect x="260" y="158" width="500" height="70" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="284" y="180" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">ServerConnector: HTTP/1.1 on 0.0.0.0:8980</text>
+<text x="272" y="198.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>port from </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">org.opennms.netmgt.jetty.port</tspan><tspan>; HTTPS (8443) and</tspan></text>
+<text x="272" y="216.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">AJP (8981) are in the file, commented out</text>
+<circle cx="264" cy="162" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="264" y="166.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="260" y="242" width="500" height="52" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="284" y="264" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Thread pool</text>
+<text x="272" y="282.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>a </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">qtp&lt;id&gt;-&lt;n&gt;</tspan><tspan> thread runs the request from here on</tspan></text>
+<circle cx="264" cy="246" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="264" y="250.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">2</text>
+<rect x="260" y="308" width="500" height="52" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="284" y="330" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">MDCHandler (OpenNMS)</text>
+<text x="272" y="348.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>log prefix </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">web</tspan><tspan>: what the request logs goes to </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">logs/web.log</tspan></text>
+<circle cx="264" cy="312" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="264" y="316.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">3</text>
+<rect x="260" y="376" width="500" height="346" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="274" y="397.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="start" fill="#0f172a">HandlerCollection: calls each handler in turn</text>
+<rect x="278" y="414" width="464" height="84" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="302" y="436" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c2d12">RewriteHandler: response headers</text>
+<text x="290" y="454.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">X-Frame-Options: SAMEORIGIN</tspan><tspan> on everything;</tspan></text>
+<text x="290" y="472.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">Cache-Control: no-store</tspan><tspan> on </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">/opennms/...</tspan></text>
+<text x="290" y="490.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12"><tspan>except under </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">/opennms/assets/</tspan></text>
+<circle cx="282" cy="418" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="282" y="422.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">4</text>
+<rect x="278" y="512" width="464" height="134" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="302" y="534" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c2d12">ContextHandlerCollection: which web app?</text>
+<text x="290" y="552.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12">the longest context path that matches the URL</text>
+<circle cx="282" cy="516" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="282" y="520.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">5</text>
+<rect x="294" y="576" width="136" height="54" rx="9" fill="#ffedd5" stroke="#c2410c" stroke-width="1.6"/>
+<text x="362.0" y="597.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="middle" fill="#7c2d12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">/</tspan></text>
+<text x="362.0" y="614.94" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="middle" fill="#7c2d12">ROOT</text>
+<rect x="442" y="576" width="136" height="54" rx="9" fill="#ffedd5" stroke="#c2410c" stroke-width="1.6"/>
+<text x="510.0" y="597.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="middle" fill="#7c2d12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">/opennms</tspan></text>
+<text x="510.0" y="614.94" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="middle" fill="#7c2d12">opennms</text>
+<rect x="590" y="576" width="136" height="54" rx="9" fill="#ffedd5" stroke="#c2410c" stroke-width="1.6"/>
+<text x="658.0" y="597.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="middle" fill="#7c2d12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">/hawtio</tspan></text>
+<text x="658.0" y="614.94" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="middle" fill="#7c2d12">if installed</text>
+<rect x="278" y="660" width="464" height="50" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="302" y="682" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c2d12">DefaultHandler</text>
+<text x="290" y="700.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12">404 when no web application handled it</text>
+<circle cx="282" cy="664" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="282" y="668.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">6</text>
+<path d="M510,228 L510,240" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<path d="M510,294 L510,306" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<path d="M510,360 L510,374" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<path d="M204,203 L258,203" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<rect x="210.6" y="181" width="38.8" height="21.6" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="230" y="195.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#ea580c">HTTP</text>
+<rect x="800" y="114" width="276" height="628" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="814" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Where the web apps come from</text>
+<rect x="816" y="158" width="244" height="124" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="828" y="180" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">DeploymentManager</text>
+<text x="828" y="198.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>with </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">OpenNMSWebAppProvider</tspan><tspan>:</tspan></text>
+<text x="828" y="216.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>scans </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">jetty-webapps/</tspan><tspan> every</tspan></text>
+<text x="828" y="234.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">10 s; each directory there</text>
+<text x="828" y="252.67" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">becomes a web application</text>
+<rect x="816" y="298" width="244" height="136" rx="9" fill="#fefce8" stroke="#ca8a04" stroke-width="1.6"/>
+<text x="828" y="320" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#713f12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13.0">jetty-webapps/</tspan></text>
+<text x="828" y="338.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#713f12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">ROOT/     -&gt; /</tspan></text>
+<text x="828" y="356.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#713f12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">opennms/  -&gt; /opennms</tspan></text>
+<text x="828" y="374.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#713f12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">hawtio/   -&gt; /hawtio</tspan></text>
+<text x="828" y="392.67" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#713f12">(if installed)</text>
+<rect x="816" y="450" width="244" height="104" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="828" y="472" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Configuration</text>
+<text x="828" y="490.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/jetty.xml</tspan><tspan> if it exists,</tspan></text>
+<text x="828" y="508.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">else the copy built into</text>
+<text x="828" y="526.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">OpenNMS (a sample is</text>
+<text x="828" y="544.6700000000001" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/examples/jetty.xml</tspan><tspan>)</tspan></text>
+<rect x="816" y="570" width="244" height="76" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="828" y="592" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">JMX</text>
+<text x="828" y="610.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Jetty&#x27;s MBeans join the</text>
+<text x="828" y="628.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">platform MBean server</text>
+<path d="M816,376 L792,376 L792,603 L744,603" fill="none" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<rect x="761.8" y="480" width="60.4" height="21.6" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="792" y="494.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#ea580c">deploys</text>
+</svg>

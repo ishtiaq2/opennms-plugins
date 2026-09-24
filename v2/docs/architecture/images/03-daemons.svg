@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="900" viewBox="0 0 1100 900" role="img" aria-labelledby="t d">
+<title id="t">The daemons: one list, two passes, one tree of Spring contexts</title>
+<desc id="d">The Invoker registers each enabled service of etc/service-configuration.xml as a JMX MBean, calls init() on all of them in file order (pass 0), then start() on all of them (pass 1). Most daemons keep their beans in a Spring context.</desc>
+<defs><marker id="a059669" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker><marker id="a94a3b8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker><marker id="aea580c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ea580c"/></marker></defs>
+<rect x="0.5" y="0.5" width="1099" height="899" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="24" y="36" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="21" font-weight="bold" fill="#0f172a">The daemons: one list, two passes, one tree of Spring contexts</text>
+<text x="24" y="59" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">The Invoker registers each enabled service of etc/service-configuration.xml as a JMX MBean, calls init() on all of them</text>
+<text x="24" y="78" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">in file order (pass 0), then start() on all of them (pass 1). Most daemons keep their beans in a Spring context.</text>
+<rect x="24" y="112" width="520" height="762" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="38" y="134" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#064e3b">etc/service-configuration.xml, the 27 enabled services</text>
+<text x="70" y="164" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#064e3b">MBean OpenNMS:Name=...</text>
+<text x="254" y="164" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#064e3b">pass 0</text>
+<text x="422" y="164" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#064e3b">pass 1</text>
+<text x="56" y="191" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">1</text>
+<text x="70" y="191" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Manager</text>
+<text x="254" y="191" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="56" y="213" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">2</text>
+<text x="70" y="213" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">TestLoadLibraries</text>
+<text x="254" y="213" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">doTestLoadLibraries()</text>
+<rect x="34" y="219" width="474" height="20" rx="4" fill="#ecfdf5" stroke="#ecfdf5" stroke-width="0"/>
+<text x="56" y="235" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">3</text>
+<text x="70" y="235" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#064e3b">Eventd</text>
+<text x="254" y="235" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#064e3b">init()</text>
+<text x="422" y="235" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#064e3b">start()</text>
+<text x="56" y="257" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">4</text>
+<text x="70" y="257" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Alarmd</text>
+<text x="254" y="257" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="257" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="279" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">5</text>
+<text x="70" y="279" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Bsmd</text>
+<text x="254" y="279" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="279" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="301" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">6</text>
+<text x="70" y="301" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Ticketer</text>
+<text x="254" y="301" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="301" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="323" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">7</text>
+<text x="70" y="323" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Queued</text>
+<text x="254" y="323" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="323" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="345" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">8</text>
+<text x="70" y="345" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Actiond</text>
+<text x="254" y="345" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="345" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="367" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">9</text>
+<text x="70" y="367" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Notifd</text>
+<text x="254" y="367" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="367" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="389" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">10</text>
+<text x="70" y="389" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Scriptd</text>
+<text x="254" y="389" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="389" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="411" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">11</text>
+<text x="70" y="411" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Rtcd</text>
+<text x="254" y="411" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="411" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="433" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">12</text>
+<text x="70" y="433" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Pollerd</text>
+<text x="254" y="433" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="433" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="455" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">13</text>
+<text x="70" y="455" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">EnhancedLinkd</text>
+<text x="254" y="455" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="455" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="477" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">14</text>
+<text x="70" y="477" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Collectd</text>
+<text x="254" y="477" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="477" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="499" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">15</text>
+<text x="70" y="499" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Discovery</text>
+<text x="254" y="499" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="499" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="521" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">16</text>
+<text x="70" y="521" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Vacuumd</text>
+<text x="254" y="521" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="521" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="543" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">17</text>
+<text x="70" y="543" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">EventTranslator</text>
+<text x="254" y="543" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="543" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="565" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">18</text>
+<text x="70" y="565" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">PassiveStatusd</text>
+<text x="254" y="565" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="565" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="587" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">19</text>
+<text x="70" y="587" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Statsd</text>
+<text x="254" y="587" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="587" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="609" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">20</text>
+<text x="70" y="609" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Provisiond</text>
+<text x="254" y="609" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="609" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="631" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">21</text>
+<text x="70" y="631" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Reportd</text>
+<text x="254" y="631" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="631" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="653" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">22</text>
+<text x="70" y="653" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Ackd</text>
+<text x="254" y="653" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="653" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<rect x="34" y="659" width="474" height="20" rx="4" fill="#fff7ed" stroke="#fff7ed" stroke-width="0"/>
+<text x="56" y="675" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">23</text>
+<text x="70" y="675" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#7c2d12">JettyServer</text>
+<text x="254" y="675" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#7c2d12">init()</text>
+<text x="422" y="675" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#7c2d12">start()</text>
+<rect x="34" y="681" width="474" height="20" rx="4" fill="#f5f3ff" stroke="#f5f3ff" stroke-width="0"/>
+<text x="56" y="697" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">24</text>
+<text x="70" y="697" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#4c1d95">KarafStartupMonitor</text>
+<text x="254" y="697" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">init()</text>
+<text x="422" y="697" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">start()</text>
+<text x="56" y="719" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">25</text>
+<text x="70" y="719" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Telemetryd</text>
+<text x="254" y="719" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="719" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="741" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">26</text>
+<text x="70" y="741" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">Trapd</text>
+<text x="254" y="741" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="741" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<text x="56" y="763" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#64748b">27</text>
+<text x="70" y="763" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">PerspectivePoller</text>
+<text x="254" y="763" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">init()</text>
+<text x="422" y="763" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">start()</text>
+<path d="M242,194 L242,768" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#a059669)" stroke-linejoin="round"/>
+<path d="M410,194 L410,768" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#a059669)" stroke-linejoin="round"/>
+<circle cx="242" cy="182" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="242" y="186.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">1</text>
+<circle cx="410" cy="182" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="410" y="186.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">2</text>
+<rect x="40" y="790" width="488" height="76" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="52" y="810.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">Disabled in 33.1.8: Correlator, SnmpPoller, Tl1d, Syslogd,</text>
+<text x="52" y="827.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">AsteriskGateway. A service that throws in init() or start()</text>
+<text x="52" y="845.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">stops OpenNMS (&quot;Shutting down and exiting&quot;).</text>
+<rect x="566" y="116" width="510" height="104" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="590" y="138" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c2d12">JettyServer (row 23)</text>
+<text x="578" y="156.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12"><tspan>init(): builds the Jetty server from </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/jetty.xml</tspan><tspan> or the</tspan></text>
+<text x="578" y="174.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12">built-in copy. start(): starts Jetty, which deploys the web</text>
+<text x="578" y="192.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12">apps, and the /opennms app starts Karaf (Steps 4 to 6).</text>
+<circle cx="570" cy="120" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="570" y="124.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">3</text>
+<rect x="566" y="232" width="510" height="88" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="590" y="254" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">KarafStartupMonitor (row 24)</text>
+<text x="578" y="272.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">start() checks every 5 s until Karaf&#x27;s last boot feature has</text>
+<text x="578" y="290.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">registered its health service; after about 5 minutes</text>
+<text x="578" y="308.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">without it, OpenNMS stops.</text>
+<circle cx="570" cy="236" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="570" y="240.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">4</text>
+<rect x="566" y="338" width="510" height="536" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="580" y="360" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Spring contexts: a tree inside the JVM</text>
+<rect x="584" y="382" width="326" height="26" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="596" y="402.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">soaContext: the OpenNMS service registry</text>
+<rect x="610" y="418" width="288" height="26" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="622" y="438.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">commonContext: shared configuration</text>
+<rect x="636" y="454" width="124" height="26" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="648" y="474.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">daemonContext</text>
+<rect x="662" y="490" width="314" height="26" rx="6" fill="#fefce8" stroke="#ca8a04" stroke-width="1.6"/>
+<text x="674" y="510.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#713f12"><tspan>daoContext: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">dataSource</tspan><tspan>, Hibernate, DAOs</tspan></text>
+<rect x="688" y="526" width="228" height="26" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+<text x="700" y="546.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#064e3b">eventDaemonContext (Eventd)</text>
+<rect x="688" y="562" width="326" height="26" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+<text x="700" y="582.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#064e3b">alarmdContext (Alarmd), queued, rtc, ...</text>
+<rect x="688" y="598" width="168" height="26" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="700" y="618.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">pollerConfigContext</text>
+<rect x="714" y="634" width="191" height="26" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+<text x="726" y="654.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#064e3b">notifdContext (Notifd)</text>
+<rect x="714" y="670" width="168" height="26" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="726" y="690.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">thresholdingContext</text>
+<rect x="740" y="706" width="258" height="26" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+<text x="752" y="726.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#064e3b">pollerdContext, collectdContext</text>
+<rect x="740" y="742" width="101" height="26" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="752" y="762.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#7c2d12">webContext</text>
+<path d="M596,408 L596,431.0 L608,431.0" fill="none" stroke="#94a3b8" stroke-width="1.3" stroke-linejoin="round"/>
+<path d="M622,444 L622,467.0 L634,467.0" fill="none" stroke="#94a3b8" stroke-width="1.3" stroke-linejoin="round"/>
+<path d="M648,480 L648,503.0 L660,503.0" fill="none" stroke="#94a3b8" stroke-width="1.3" stroke-linejoin="round"/>
+<path d="M674,516 L674,539.0 L686,539.0" fill="none" stroke="#94a3b8" stroke-width="1.3" stroke-linejoin="round"/>
+<path d="M674,516 L674,575.0 L686,575.0" fill="none" stroke="#94a3b8" stroke-width="1.3" stroke-linejoin="round"/>
+<path d="M674,516 L674,611.0 L686,611.0" fill="none" stroke="#94a3b8" stroke-width="1.3" stroke-linejoin="round"/>
+<path d="M700,624 L700,647.0 L712,647.0" fill="none" stroke="#94a3b8" stroke-width="1.3" stroke-linejoin="round"/>
+<path d="M700,624 L700,683.0 L712,683.0" fill="none" stroke="#94a3b8" stroke-width="1.3" stroke-linejoin="round"/>
+<path d="M726,696 L726,719.0 L738,719.0" fill="none" stroke="#94a3b8" stroke-width="1.3" stroke-linejoin="round"/>
+<path d="M726,696 L726,755.0 L738,755.0" fill="none" stroke="#94a3b8" stroke-width="1.3" stroke-linejoin="round"/>
+<path d="M858,755.0 L890,755.0" fill="none" stroke="#ea580c" stroke-width="1.5" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<text x="896" y="754" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#7c2d12">parent of the /opennms</text>
+<text x="896" y="769" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#7c2d12">web app&#x27;s context (Step 5)</text>
+<rect x="584" y="796" width="474" height="62" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="596" y="816.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">A child context sees every bean of its parents: the web app</text>
+<text x="596" y="833.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">uses the daemons&#x27; DAOs and the same database pool.</text>
+</svg>
