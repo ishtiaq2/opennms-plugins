@@ -5,14 +5,11 @@
 #   scripts/verify-assets.sh --live-drop   # + write a file into ./shared-assets and fetch it at once
 #   scripts/verify-assets.sh --plugins     # + check the UI-extension REST endpoints (needs a login)
 #
-# Environment: ONMS_URL (default http://localhost:8980), ONMS_USER / ONMS_PASS (admin / admin),
-#              SHARED_DIR (default: the repo's shared-assets folder, i.e. the bind-mount source)
+# Settings come from .env or the environment (scripts/lib.sh): ONMS_URL, ONMS_USER, ONMS_PASS, and
+# SHARED_DIR (default: the repo's shared-assets folder, i.e. the bind-mount source).
 set -uo pipefail
-
-ONMS_URL=${ONMS_URL:-http://localhost:8980}
-ONMS_USER=${ONMS_USER:-admin}
-ONMS_PASS=${ONMS_PASS:-admin}
-REPO=$(cd "$(dirname "$0")/.." && pwd)
+# shellcheck source=scripts/lib.sh
+. "$(dirname "$0")/lib.sh"
 SHARED_DIR=${SHARED_DIR:-$REPO/shared-assets}
 BASE="$ONMS_URL/opennms/assets/shared"
 LIVE_DROP=0; PLUGINS=0
@@ -20,7 +17,7 @@ for a in "$@"; do
   case "$a" in
     --live-drop) LIVE_DROP=1 ;;
     --plugins) PLUGINS=1 ;;
-    -h|--help) sed -n '2,11p' "$0"; exit 0 ;;
+    -h|--help) lab_usage; exit 0 ;;
     *) echo "unknown option $a" >&2; exit 2 ;;
   esac
 done
@@ -90,6 +87,7 @@ fi
 
 if [ "$PLUGINS" = 1 ]; then
   echo; echo "== UI-extension endpoints (authenticated as $ONMS_USER)"
+  lab_check_login || fail "cannot log in as $ONMS_USER (see the line above); the checks below will fail too"
   LIST=$(curl -sS -u "$ONMS_USER:$ONMS_PASS" -H 'Accept: application/json' "$ONMS_URL/opennms/rest/plugins")
   ROWS=$(python3 -c '
 import json, sys
@@ -113,7 +111,7 @@ for p in data:
     esac
   done <<<"$ROWS"
   for id in labNodeInventory labIconCatalog; do
-    grep -q "^$id " <<<"$ROWS" || warn "$id not deployed yet (scripts/build-plugins.sh, then restart or copy the KARs into deploy/)"
+    lab_has_extension "$id" <<<"$ROWS" || warn "$id not deployed yet (scripts/build-plugins.sh, then scripts/deploy-plugin.sh <name>)"
   done
 fi
 

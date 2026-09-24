@@ -142,3 +142,37 @@ folder; only the host can.
   ConfigMap is limited to 1 MiB); anything bigger belongs on a persistent volume.
 * **Reverse proxies:** keep the files on the same origin as the UI. A proxy that forwards
   `/opennms/` already forwards `/opennms/assets/shared/`.
+
+## 5.6 Deploying plugins: a second deploy folder
+
+The shared folder answers "where do the images go". The plugins themselves arrive as KARs, and in
+a container the place you put a KAR decides two things: whether installing a plugin is a file copy
+on the host, and whether the plugin is still there after the container is re-created (a new image
+version, `podman-compose down` and `up`). `$OPENNMS_HOME/data/`, where Karaf keeps its KAR and
+bundle caches and its record of installed features, is not a volume in the Horizon image.
+
+| | **`./deploy` + second watcher (chosen)** | `podman cp` into `$OPENNMS_HOME/deploy` | `kar:install` in the Karaf shell | `/opt/opennms-overlay/deploy/` | host folder mounted over `$OPENNMS_HOME/deploy` |
+|---|---|---|---|---|---|
+| Install | copy a file on the host | `podman cp` | a shell command; the file must be reachable inside the container | copy, then restart | copy a file on the host |
+| Live, no restart | yes, within a second | yes | yes | no: copied at start | yes |
+| Uninstall | delete the file | `podman exec ... rm` | `kar:uninstall` | delete it, then re-create the container (the copy in `deploy/` stays until then) | delete the file |
+| After re-creating the container | re-installed from the mount at start | gone | gone | re-installed | re-installed |
+| KARs shipped in the image (Cortex TSS, VeloCloud) | untouched | untouched | untouched | untouched | hidden by the mount |
+| Extra configuration | one `.cfg` file, through the etc overlay | none | none | none | none |
+
+The chosen option relies on standard Karaf behaviour: Felix FileInstall reads every
+`etc/org.apache.felix.fileinstall-<name>.cfg` as the configuration of one more watched folder
+(Karaf's own `deploy/` is configured by `etc/org.apache.felix.fileinstall-deploy.cfg` in exactly
+this way), and any `.kar` file a watcher finds goes to the same KAR deployer. The lab's file copies
+Karaf's settings for `deploy/` (poll every second, start at start level 80) and changes three:
+the directory, a separate temporary directory, and a filter that accepts only `*.kar`, so that a
+README or a half-copied `.part` file is never touched. It is read-only in the container, like the
+shared folder: only the host can add or remove plugins.
+
+The version of this lab before this one used the overlay (`/opt/opennms-overlay/deploy/`). It
+works, but every plugin change needed a restart, and removing a plugin needed a re-created
+container, because the entrypoint's `rsync` copies files but never deletes them.
+
+These behaviours are traced to the Karaf 4.3.10, Felix FileInstall 3.7.4 and Horizon entrypoint
+sources in the [source trace](reference/source-trace.md); how the deploy scripts were exercised
+is in [verification](reference/verification.md).

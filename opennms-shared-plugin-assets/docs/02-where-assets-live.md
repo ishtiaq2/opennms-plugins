@@ -13,8 +13,11 @@ creates a symlink `/opt/opennms -> /usr/share/opennms`, which is why most docume
 `/opt/opennms/...`. Both names reach the same files. This lab uses the real path in its
 bind-mount target so that nothing depends on symlink resolution.
 
-The image runs as **uid 10001** (`USER 10001`) with group 0, and the entrypoint sets `umask 002`.
-Remember the uid: it decides whether OpenNMS can read the files you put on the host (section 2.6).
+The image runs as the user `opennms`, **uid 10001 and gid 10001** (`USER 10001`; the image
+creates that user with its own group 10001). The files under `/usr/share/opennms` belong to uid
+10001 and group 0, and the entrypoint sets `umask 002`. Remember the uid: it decides whether
+OpenNMS can read the files you put on the host (section 2.6). The group matters for ICMP (Part 0,
+section 0.12).
 
 ## 2.2 Inside a plugin: from `mvn package` to `Bundle.getResource()`
 
@@ -36,8 +39,10 @@ flowchart TD
    file and the class that implements `UIExtension`.
 2. **Package.** `karaf-maven-plugin` wraps the bundle and a `features.xml` into a KAR. Inside the
    KAR the bundle sits under `repository/` in Maven layout.
-3. **Deploy.** You drop the KAR into `$OPENNMS_HOME/deploy/`. The image already ships two KARs
-   there (the Cortex TSS and VeloCloud plugins are downloaded at image build time).
+3. **Deploy.** You drop the KAR into a folder Karaf watches: `$OPENNMS_HOME/deploy/`, where the
+   image already ships two KARs (the Cortex TSS and VeloCloud plugins, downloaded at image build
+   time), or, in this lab, the host folder `./deploy`, which Karaf watches as a second deploy
+   folder ([Part 6](06-installing-the-plugins.md)).
 4. **Extract.** Karaf's KAR service copies the `repository/` part into `${karaf.data}/kar/<kar-name>/`.
    In OpenNMS, Karaf is started by the web application itself (`WebAppListener` sets
    `karaf.home` to `OPENNMS_HOME` and `karaf.data` to `OPENNMS_HOME/data`), so that is
@@ -52,8 +57,8 @@ flowchart TD
 Two things follow. First, `getExtensionClass()` must return a class **from the plugin's own
 bundle**: that class is the only thing OpenNMS uses to find the JAR with your JavaScript. Second,
 anything in this chain changes only when you rebuild and redeploy. `/usr/share/opennms/data` is
-not a volume in the image, so a recreated container rebuilds the KAR and bundle caches from
-`deploy/` at start.
+not a volume in the image, so a recreated container rebuilds the KAR and bundle caches from its
+deploy folders at start.
 
 ## 2.3 The `opennms` web application directory
 
@@ -82,23 +87,28 @@ The entrypoint knows three overlay folders. At every start it copies them with `
 | `/opt/opennms-etc-overlay/` | `$OPENNMS_HOME/etc/` | at container start |
 | `/opt/opennms-jetty-webinf-overlay/` | `$OPENNMS_HOME/jetty-webapps/opennms/WEB-INF/` | at container start |
 
-Overlays are the right tool for configuration and for plugin KARs; this lab uses
-`/opt/opennms-overlay/deploy/` for the two demo KARs. They are the wrong tool for assets you want
-to drop in while OpenNMS runs: a file added to an overlay after start stays invisible until the
-next restart, because what OpenNMS reads is the copy.
+Overlays are the right tool for configuration. This lab mounts only the etc overlay, for one
+file: `org.apache.felix.fileinstall-lab.cfg`, which makes Karaf watch the plugin deploy folder
+([Part 6](06-installing-the-plugins.md)). Overlays are the wrong tool for anything you want to
+change while OpenNMS runs: a file added to an overlay after start stays invisible until the next
+restart, because what OpenNMS reads is the copy. And `rsync` copies but never deletes: a file you
+remove from an overlay stays in its target until the container is re-created (for `etc/`, which is
+a volume, until you delete it there).
 
-One trap: never place files for `jetty-webapps/opennms/assets/shared/` in the overlay. The mount
+One trap: never place files for `jetty-webapps/opennms/assets/shared/` in an overlay. The mount
 in section 2.6 is read-only, the `rsync` would fail, and the entrypoint exits on that failure.
 
 ## 2.5 Volumes
 
 The image declares three volumes: `/opt/opennms/etc`, `/opt/opennms-etc-overlay` and
 `/opennms-data` (RRD files, reports, MIBs). The compose file in this repo keeps `etc` and
-`/opennms-data` in named volumes. None of these is served over HTTP.
+`/opennms-data` in named volumes and bind-mounts `./etc-overlay` at `/opt/opennms-etc-overlay`.
+None of these is served over HTTP. `data/` (Karaf's caches) and `logs/` are not volumes: they live
+in the container and are new in every re-created container ([Part 0, section 0.10](00-install-opennms-and-postgresql.md#010-what-is-where)).
 
 ## 2.6 The shared folder: one bind mount
 
-The lab adds exactly one line to the Horizon service:
+For the assets, the lab adds exactly one line to the Horizon service:
 
 ```yaml
 - ./shared-assets:/usr/share/opennms/jetty-webapps/opennms/assets/shared:ro,z
@@ -114,6 +124,7 @@ the `opennms` web application's `assets/` tree, the files are served at
 | Inside the plugin JAR | Maven build | after redeploy | `/rest/plugins/...` (module and `style.css` only) | no: images come back as `application/javascript` |
 | `data/kar/`, `data/cache/` | Karaf | after redeploy | not directly | no |
 | Overlay folders | you, then the entrypoint's `rsync` | after restart | where copied | no: not live |
+| Lab deploy folder `./deploy` (plugin KARs) | you, on the host | within a second (Karaf installs the KAR) | not served; installs plugins | not for assets: for plugin code ([Part 6](06-installing-the-plugins.md)) |
 | Volumes (`etc`, `/opennms-data`) | you / OpenNMS | n/a | not served | no |
 | Files baked into `jetty-webapps/opennms/` | image build | after rebuild | `/opennms/...` | no: not live |
 | **Bind mount at `jetty-webapps/opennms/assets/shared`** | **you, on the host** | **next request** | **`/opennms/assets/shared/...`** | **yes** |

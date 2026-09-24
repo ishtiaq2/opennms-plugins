@@ -2,7 +2,8 @@
 
 Every statement about OpenNMS, the Integration API, Jetty and Karaf in this guide rests on the lines
 below. Links point at the exact tags: OpenNMS `opennms-33.1.8-1`, OIA `v1.6.1`, Jetty
-`jetty-9.4.57.v20241219` (the version pinned by OpenNMS 33.1.8) and Karaf `karaf-4.3.10`. Line numbers
+`jetty-9.4.57.v20241219` (the version pinned by OpenNMS 33.1.8), Karaf `karaf-4.3.10` and Felix
+FileInstall `org.apache.felix.fileinstall-3.7.4` (the version Karaf 4.3.10 ships). Line numbers
 were computed from those tags when this guide was written.
 
 ## OpenNMS 33.1.8: UI extensions
@@ -80,15 +81,55 @@ were computed from those tags when this guide was written.
 | What | Where |
 |---|---|
 | `/opt/opennms` is a symlink to `/usr/share/opennms` | [`Dockerfile:114`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/Dockerfile#L114) |
+| user `opennms` created with uid 10001 and its own group 10001 | [`Dockerfile:67`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/Dockerfile#L67) |
 | runs as uid 10001 | [`Dockerfile:155`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/Dockerfile#L155) |
+| ports: web 8980, Karaf SSH 8101 | [`Dockerfile:182`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/Dockerfile#L182) |
 | declared volumes | [`Dockerfile:169`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/Dockerfile#L169) |
 | plugin KARs pre-installed in `deploy/` | [`Dockerfile:81`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/Dockerfile#L81) |
-| overlay copied at start (not live) | [`entrypoint.sh:147`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/container-fs/entrypoint.sh#L147) |
+| entrypoint flags `-f`, `-i`, `-s`, `-t` | [`entrypoint.sh:73`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/container-fs/entrypoint.sh#L73) |
+| `etc/configured` skips the installer | [`entrypoint.sh:80`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/container-fs/entrypoint.sh#L80) |
+| empty `etc/` initialised from `etc-pristine` | [`entrypoint.sh:117`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/container-fs/entrypoint.sh#L117) |
+| overlay copied at start (not live, never deletes) | [`entrypoint.sh:147`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/container-fs/entrypoint.sh#L147) |
+| etc overlay copied into `etc/` at every start | [`entrypoint.sh:155`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/container-fs/entrypoint.sh#L155) |
+| `-s` runs the configuration tester, then the installer, then starts | [`entrypoint.sh:221`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/container-fs/entrypoint.sh#L221) |
+| the image's `/health.sh` passes `-sSF` to curl | [`health.sh:3`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/container-fs/health.sh#L3) |
+| in the container, Karaf SSH listens on all interfaces | [`org.apache.karaf.shell.cfg.tmpl:6`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/container-fs/confd/templates/org.apache.karaf.shell.cfg.tmpl#L6) |
 | `opennms.home` = `/usr/share/opennms` | [`entrypoint.sh:173`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/container-fs/entrypoint.sh#L173) |
 | database settings come from environment variables | [`opennms-datasources.xml.tmpl:20`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-container/core/container-fs/confd/templates/opennms-datasources.xml.tmpl#L20) |
 | Jetty 9.4.57.v20241219 | [`pom.xml:1847`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/pom.xml#L1847) |
 | Integration API 1.6.1 | [`pom.xml:1927`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/pom.xml#L1927) |
 | Karaf 4.3.10 | [`pom.xml:1879`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/pom.xml#L1879) |
+
+## OpenNMS 33.1.8: installation, health checks, logins
+
+| What | Where |
+|---|---|
+| the installer writes `etc/configured` | [`Installer.java:357`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-install/src/main/java/org/opennms/install/Installer.java#L357) |
+| the `opennms` database user is only created if missing (its password is never changed) | [`Migrator.java:437`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/core/schema/src/main/java/org/opennms/core/schema/Migrator.java#L437) |
+| health probe answer when every check is green | [`HealthCheckRestServiceImpl.java:47`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/core/health/rest/src/main/java/org/opennms/core/health/rest/internal/HealthCheckRestServiceImpl.java#L47) |
+| otherwise HTTP 599 | [`UnhealthyStatusType.java:29`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/core/health/rest/src/main/java/org/opennms/core/health/rest/internal/UnhealthyStatusType.java#L29) |
+| the probe needs no login | [`applicationContext-spring-security.xml:49`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-webapp/src/main/webapp/WEB-INF/applicationContext-spring-security.xml#L49) |
+| `/rest/info` (version) | [`InfoRestService.java:56`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-webapp-rest/src/main/java/org/opennms/web/rest/v1/InfoRestService.java#L56) |
+| every `admin`/`admin` login is sent to the password gate | [`OpenNMSAuthSuccessHandler.java:57`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/features/springframework-security/src/main/java/org/opennms/web/springframework/security/OpenNMSAuthSuccessHandler.java#L57) |
+| Karaf's login realm replaced by OpenNMS users | [`blueprint.xml:14`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/container/jaas-login-module/src/main/resources/OSGI-INF/blueprint/blueprint.xml#L14) |
+| ... admins only | [`OpenNMSLoginModule.java:117`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/container/jaas-login-module/src/main/java/org/opennms/container/jaas/OpenNMSLoginModule.java#L117) |
+| default discovery pings 127.0.0.1 into requisition `selfmonitor` | [`discovery-configuration.xml:9`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/opennms-base-assembly/src/main/filtered/etc/discovery-configuration.xml#L9) |
+| `etc/featuresBoot.d/` read at start | [`KarafExtender.java:81`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/container/extender/src/main/java/org/opennms/karaf/extender/KarafExtender.java#L81) |
+| `wait-for-kar=<KAR name>` | [`KarafExtender.java:73`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/container/extender/src/main/java/org/opennms/karaf/extender/KarafExtender.java#L73) |
+| waits until the KAR is installed (no time limit)... | [`KarDependencyHandler.java:74`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/container/extender/src/main/java/org/opennms/karaf/extender/KarDependencyHandler.java#L74) |
+| ...reporting "Starting" to the health check meanwhile | [`KarafExtender.java:448`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/container/extender/src/main/java/org/opennms/karaf/extender/KarafExtender.java#L448) |
+
+## OpenNMS 33.1.8: documentation used by Part 0
+
+| What | Where |
+|---|---|
+| PostgreSQL 10.x to 15.x compatible | [`antora.yml:25`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/docs/antora.yml#L25) |
+| the docs use PostgreSQL 15 | [`antora.yml:29`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/docs/antora.yml#L29) |
+| "just testing": 4 GB RAM (2 cores, 50 GB disk) | [`system-requirements.adoc:16`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/docs/modules/deployment/pages/core/system-requirements.adoc#L16) |
+| `max_connections` at least 100 | [`getting-started.adoc:79`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/docs/modules/deployment/pages/core/getting-started.adoc#L79) |
+| initialise with `-i`, then start | [`initialize.adoc:11`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/docs/modules/deployment/pages/core/docker/initialize.adoc#L11) |
+| upgrades: delete `etc/configured` | [`initialize.adoc:21`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/docs/modules/deployment/pages/core/docker/initialize.adoc#L21) |
+| the `ping_group_range` sysctl for uid/gid 10001 | [`minion.adoc:68`](https://github.com/OpenNMS/opennms/blob/opennms-33.1.8-1/docs/modules/deployment/pages/minion/docker/minion.adoc#L68) |
 
 ## Integration API 1.6.1
 
@@ -100,6 +141,8 @@ were computed from those tags when this guide was written.
 | the scaffold imports an image... | [`App.vue:4`](https://github.com/OpenNMS/opennms-integration-api/blob/v1.6.1/ui-extension/src/App.vue#L4) |
 | ...which the build inlines as base64 | [`uiextension.es.js:1`](https://github.com/OpenNMS/opennms-integration-api/blob/v1.6.1/sample/src/main/resources/ui-ext/uiextension.es.js#L1) |
 | the archetype KAR does not auto-install its feature | [`pom.xml:32`](https://github.com/OpenNMS/opennms-integration-api/blob/v1.6.1/archetypes/example-kar-plugin/src/main/resources/archetype-resources/assembly/kar/pom.xml#L32) |
+| the VeloCloud plugin (shipped in the image) does the same (repository head, `2f3ed08`) | [`pom.xml:31`](https://github.com/OpenNMS/opennms-velocloud-plugin/blob/2f3ed0818793245e2657e032efb2d9aa5d236cb7/assembly/kar/pom.xml#L31) |
+| ...and puts the version into the KAR file name | [`pom.xml:27`](https://github.com/OpenNMS/opennms-velocloud-plugin/blob/2f3ed0818793245e2657e032efb2d9aa5d236cb7/assembly/kar/pom.xml#L27) |
 
 ## Jetty 9.4.57
 
@@ -122,4 +165,26 @@ were computed from those tags when this guide was written.
 | KARs extracted to `${karaf.data}/kar` | [`Activator.java:47`](https://github.com/apache/karaf/blob/karaf-4.3.10/kar/src/main/java/org/apache/karaf/kar/internal/osgi/Activator.java#L47) |
 | `Karaf-Feature-Start: false` disables auto-install | [`Kar.java:104`](https://github.com/apache/karaf/blob/karaf-4.3.10/kar/src/main/java/org/apache/karaf/kar/internal/Kar.java#L104) |
 | otherwise the KAR installs its features | [`KarServiceImpl.java:124`](https://github.com/apache/karaf/blob/karaf-4.3.10/kar/src/main/java/org/apache/karaf/kar/internal/KarServiceImpl.java#L124) |
+| only features with install mode `auto` are installed | [`KarServiceImpl.java:304`](https://github.com/apache/karaf/blob/karaf-4.3.10/kar/src/main/java/org/apache/karaf/kar/internal/KarServiceImpl.java#L304) |
+| a failed feature is only a warning | [`KarServiceImpl.java:317`](https://github.com/apache/karaf/blob/karaf-4.3.10/kar/src/main/java/org/apache/karaf/kar/internal/KarServiceImpl.java#L317) |
+| uninstalling a KAR uninstalls its features | [`KarServiceImpl.java:256`](https://github.com/apache/karaf/blob/karaf-4.3.10/kar/src/main/java/org/apache/karaf/kar/internal/KarServiceImpl.java#L256) |
+| a KAR name already installed is skipped | [`KarArtifactInstaller.java:43`](https://github.com/apache/karaf/blob/karaf-4.3.10/deployer/kar/src/main/java/org/apache/karaf/deployer/kar/KarArtifactInstaller.java#L43) |
+| log: `Installing KAR file ...` | [`KarArtifactInstaller.java:48`](https://github.com/apache/karaf/blob/karaf-4.3.10/deployer/kar/src/main/java/org/apache/karaf/deployer/kar/KarArtifactInstaller.java#L48) |
+| a changed file = uninstall + install | [`KarArtifactInstaller.java:60`](https://github.com/apache/karaf/blob/karaf-4.3.10/deployer/kar/src/main/java/org/apache/karaf/deployer/kar/KarArtifactInstaller.java#L60) |
+| a deleted file = uninstall | [`KarArtifactInstaller.java:55`](https://github.com/apache/karaf/blob/karaf-4.3.10/deployer/kar/src/main/java/org/apache/karaf/deployer/kar/KarArtifactInstaller.java#L55) |
+| KAR name = file name without extension | [`KarArtifactInstaller.java:67`](https://github.com/apache/karaf/blob/karaf-4.3.10/deployer/kar/src/main/java/org/apache/karaf/deployer/kar/KarArtifactInstaller.java#L67) |
+| Karaf's own `deploy/` is a FileInstall factory configuration | [`org.apache.felix.fileinstall-deploy.cfg:20`](https://github.com/apache/karaf/blob/karaf-4.3.10/assemblies/features/framework/src/main/resources/resources/etc/org.apache.felix.fileinstall-deploy.cfg#L20) |
+| its settings, copied by the lab's `.cfg` | [`org.apache.felix.fileinstall-deploy.cfg:23`](https://github.com/apache/karaf/blob/karaf-4.3.10/assemblies/features/framework/src/main/resources/resources/etc/org.apache.felix.fileinstall-deploy.cfg#L23) |
+| `etc/*.cfg` files become configurations | [`config.properties:274`](https://github.com/apache/karaf/blob/karaf-4.3.10/assemblies/features/base/src/main/filtered-resources/resources/etc/config.properties#L274) |
+| log: `Adding features: ...` | [`FeaturesServiceImpl.java:815`](https://github.com/apache/karaf/blob/karaf-4.3.10/features/core/src/main/java/org/apache/karaf/features/internal/service/FeaturesServiceImpl.java#L815) |
+| log: `Done.` | [`Deployer.java:1074`](https://github.com/apache/karaf/blob/karaf-4.3.10/features/core/src/main/java/org/apache/karaf/features/internal/service/Deployer.java#L1074) |
 | bundle cache `${karaf.data}/cache` | [`ConfigProperties.java:298`](https://github.com/apache/karaf/blob/karaf-4.3.10/main/src/main/java/org/apache/karaf/main/ConfigProperties.java#L298) |
+
+## Felix FileInstall 3.7.4 (used by Karaf 4.3.10)
+
+| What | Where |
+|---|---|
+| factory PID `org.apache.felix.fileinstall`: each `...fileinstall-<name>.cfg` is one watcher | [`FileInstall.java:369`](https://github.com/apache/felix-dev/blob/org.apache.felix.fileinstall-3.7.4/fileinstall/src/main/java/org/apache/felix/fileinstall/internal/FileInstall.java#L369) |
+| `${karaf.data}` in the `.cfg` is substituted | [`FileInstall.java:236`](https://github.com/apache/felix-dev/blob/org.apache.felix.fileinstall-3.7.4/fileinstall/src/main/java/org/apache/felix/fileinstall/internal/FileInstall.java#L236) |
+| poll interval | [`DirectoryWatcher.java:173`](https://github.com/apache/felix-dev/blob/org.apache.felix.fileinstall-3.7.4/fileinstall/src/main/java/org/apache/felix/fileinstall/internal/DirectoryWatcher.java#L173) |
+| the filter must match the whole file name | [`Scanner.java:89`](https://github.com/apache/felix-dev/blob/org.apache.felix.fileinstall-3.7.4/fileinstall/src/main/java/org/apache/felix/fileinstall/internal/Scanner.java#L89) |

@@ -58,6 +58,9 @@ describe('oidHasPrefix', () => {
 
 describe('resolveIconKey with the shipped manifest.json', () => {
   it.each([
+    [{ label: 'localhost', foreignSource: 'selfmonitor' }, 'nms'],
+    [{ label: 'onms', foreignSource: 'selfmonitor', categories: [{ name: 'Servers' }] }, 'nms'],
+    [{ label: 'core-router-01', foreignSource: 'SharedAssetsLab', categories: [{ name: 'Routers' }] }, 'router'],
     [{ categories: [{ name: 'Routers' }] }, 'router'],
     [{ categories: ['switches'] }, 'switch'],
     [{ categories: [{ name: 'Firewalls' }] }, 'firewall'],

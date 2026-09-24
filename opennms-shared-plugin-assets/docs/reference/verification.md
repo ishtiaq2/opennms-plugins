@@ -2,8 +2,9 @@
 
 This guide was written without access to a running OpenNMS container: the build environment
 could not pull images from Docker Hub or artifacts from Maven Central. Everything that could be
-checked without them was checked against the real code; this page says what, how, and what is
-left for you to confirm in the lab.
+checked without them was checked against the real code, and the installation and deployment
+tooling was run with stand-ins for the two images. This page says what was checked, how, and what
+is left for you to confirm in the lab.
 
 ## The test harness
 
@@ -51,14 +52,80 @@ quotes a harness result for them, the 9.4.57 code takes the same path.
 | 19 | handler chain built from OpenNMS's `jetty.xml` | `HandlerWrapper(MDCHandler) -> HandlerCollection [RewriteHandler, ContextHandlerCollection, DefaultHandler]` |
 | 20 | `scripts/verify-assets.sh --live-drop --plugins` | 20 passed, 1 warning (a probe plugin without `style.css`), 0 failed |
 
+## Containers and compose file (Podman and Docker, with stand-in images)
+
+The images `postgres:15` and `opennms/horizon:33.1.8` could not be pulled. Two small stand-in
+images took their place, built from BusyBox: the PostgreSQL stand-in answers `pg_isready` after a
+few seconds and accepts TCP connections on 5432; the Horizon stand-in has the same user (`opennms`,
+uid 10001, gid 10001, created the same way), the same `/opt/opennms` symlink, volumes and
+directories, and an entrypoint with the same flags and order of steps as the real one
+(`etc-pristine` when `etc/` is empty, datasource file from the environment, etc overlay copied,
+installer skipped when `etc/configured` exists, then a web server on 8980 that serves
+`jetty-webapps/`). It also reports its uid/gid, `ping_group_range` and the mounts at start. The
+stand-ins were switched in through `HORIZON_IMAGE` and `POSTGRES_IMAGE` in `.env`; `compose.yml`
+itself was used unchanged. Podman 4.9.3 (rootful, netavark, runc), podman-compose 1.6.0, Docker
+29.4.3 with Compose v5.1.3.
+
+| # | Check | Result |
+|---|---|---|
+| 1 | `podman-compose up -d` on empty volumes | the database started first; podman-compose ran `podman wait --condition=healthy` and started Horizon only once the database was healthy (after 9 s) |
+| 2 | `podman-compose run --rm horizon -i` (and `docker compose run --rm horizon -i`) | started the database first and waited until it was healthy; resolved `database` by name, reached port 5432, copied the etc overlay, wrote `etc/configured` into the `onms-etc` volume, exited 0; the one-off container was removed |
+| 3 | the Horizon process | `uid=10001(opennms) gid=10001(opennms)`, `ping_group_range` = `10001 10001` |
+| 4 | the three bind mounts | shared folder readable by uid 10001; `/opt/opennms-lab-deploy` read-only; `etc/org.apache.felix.fileinstall-lab.cfg` present after start |
+| 5 | ports | published on `127.0.0.1` only: reachable there, not through the host's own address; with `ONMS_HTTP_BIND=0.0.0.0` podman-compose re-created the container and the port answered on the host address |
+| 6 | health check with a `curl` stand-in | container `healthy`; `scripts/wait-for-opennms.sh` and `scripts/lab-status.sh` saw it |
+| 7 | `stop_grace_period: 1m` | podman-compose passes it as `podman stop -t 60` on `stop`/`down`/`restart` (the container's own stop timeout stays 10 s, hence the hint in Part 0); Docker Compose stores `StopTimeout=60` in the container |
+| 8 | Day 2 commands of Part 0.11 | `restart horizon`, `stop`/`start`, removing `etc/configured` then re-creating (the installer ran again), `podman volume export`, `down -v` |
+| 9 | the by-hand commands of Part 0.12, taken verbatim from the Markdown (only image names and ports replaced) | ran with Podman and, with `podman` replaced by `docker`, with Docker: env file values with spaces kept literally, `StopTimeout=60`, health check, sysctl, read-only mounts |
+| 10 | switching from the by-hand installation to compose (Part 0.12) | podman-compose reused the network and volumes (`System is already configured`); Docker Compose refused the network it had not created, and continued with the same volumes once the network was removed |
+| 11 | default `ping_group_range` without the sysctl | Podman: `0 0` (from `default_sysctls` in `containers.conf`); Docker: `0 2147483647` |
+| 12 | `depends_on: condition: service_healthy` in older podman-compose releases | absent from the released sources of 1.0.6, 1.1.0 and 1.2.0, present from 1.3.0 |
+| 13 | the image's `/health.sh` (`curl -sSF <url>`) | curl 8.5 rejects the arguments (`option -sSF: is badly used here`, exit 2), so the lab uses its own check |
+
+## Plugin deployment tooling
+
+The deploy scripts need a Karaf that installs KARs and a REST API that lists UI extensions. They
+were run against a stand-in (Python) that implements what the scripts depend on, as read in the
+Karaf 4.3.10 and Felix FileInstall 3.7.4 sources: a watcher on `./deploy` that polls every
+second with the filter `.*[.]kar` (whole-name match) and a checksum of modification time and size;
+new file = install, changed file = uninstall + install, deleted file = uninstall; a KAR name that is
+already installed is skipped; `Karaf-Feature-Start: false` adds nothing to the registry until a
+`feature:install`; the registry is keyed by extension id; `/rest/plugins`, the module and CSS
+endpoints, `/rest/info`, `/rest/health` and the anonymous probe with basic authentication. The
+KARs were built with the layout of `karaf-maven-plugin`'s `kar` goal (from `KarMojo`'s source):
+manifest, `repository/.../*-features.xml` with classifier `features`, the bundle JAR with the
+demo plugin's real `blueprint.xml`, built module, `style.css` and the class compiled with `javac`.
+
+| # | Scenario | Result |
+|---|---|---|
+| 1 | `deploy-plugin.sh node-inventory`, then `icon-catalog` | contract check passed; copied as `.<name>.part` then renamed; live after about 4 s each; `lab-status.sh` shows both registered |
+| 2 | the same KAR again | "already this exact build", confirmed live at once |
+| 3 | a new build (module changed) under the same file name | reported as update; the script waited until the served module's SHA-256 matched the new build, not just until the id was listed |
+| 4 | the same plugin under another file name (`node-inventory-1.0.1.kar`) | refused, naming the feature and extension id already deployed |
+| 5 | the same with `--replace` | old KAR undeployed and gone from `/rest/plugins`, new one deployed and live |
+| 6 | `undeploy-plugin.sh` by plugin name and by file name; an unknown name | removed and confirmed gone; unknown name lists what is deployed |
+| 7 | a KAR with `Karaf-Feature-Start: false` | deployed, prints the `feature:install` command instead of waiting; registered after the (simulated) `feature:install` |
+| 8 | a KAR whose module does not assign `window[extensionId]` | refused by the contract check; deployed with `--force` |
+| 9 | wrong password in `.env` | KAR copied, the script explains that only the live check was skipped, exit 1 |
+| 10 | OpenNMS not running | deploy and undeploy only change the folder and say so, exit 0; `wait-for-opennms.sh` times out with a hint |
+| 11 | `wait-for-opennms.sh` while the probe answers 599 | prints the health check that is not green, then "ready" when it turns green |
+| 12 | `verify-assets.sh --live-drop --plugins` | 20 passed, 0 failed |
+| 13 | `karaf.sh` with and without `sshpass` (ssh replaced by a recorder) | builds `ssh -p 8101 ... admin@localhost <command>`, adds `-t` for the interactive shell, passes the password only through `SSHPASS` |
+
+`tests/scripts/test_tools.py` keeps the core of this as unit tests: `kar_info` on generated KARs
+(name, `Karaf-Feature-Start` semantics, features repository URI, module hash, conflicts),
+`check_plugins.py` on KARs, and `.env` parsing in `scripts/lib.sh` (11 tests, all pass). The
+Playwright configuration reads `.env` the same way (checked with a probe test: values from the file,
+quotes stripped, environment wins).
+
 ## Browser behaviour (Chromium through Playwright, against the harness)
 
 | # | Check | Result |
 |---|---|---|
-| 1 | Node Inventory: every shared image decoded (`naturalWidth > 0`) | pass, 9 images |
+| 1 | Node Inventory: every shared image decoded (`naturalWidth > 0`) | pass, 10 images |
 | 2 | Node Inventory: image URLs are `/opennms/assets/shared/...?rev=N` | pass |
-| 3 | Node Inventory: rule results (router, switch, firewall, wifi-ap, sbc, linux, server, unknown) | pass |
-| 4 | Icon Catalog: every catalog image decoded | pass, 9 images |
+| 3 | Node Inventory: rule results (nms for the `selfmonitor` node, router, switch, firewall, wifi-ap, sbc, linux, server, unknown) | pass |
+| 4 | Icon Catalog: every catalog image decoded | pass, 10 images |
 | 5 | Icon Catalog: `HEAD` shows `Cache-Control: max-age=3600,public` | pass |
 | 6 | both plugins in one page session caused one `manifest.json` request | pass (1 request) |
 | 7 | a file written on the host while the page is open is served and rendered (Probe box) | pass |
@@ -68,13 +135,14 @@ quotes a harness result for them, the 9.4.57 code takes the same path.
 | 11 | CSP violations caused by the plugins | none |
 
 The shipped Playwright test (`tests/e2e/shared-assets.spec.ts`) was also run against the harness,
-with the login step skipped: 2 of 2 tests passed.
+with the login step skipped: 2 of 2 tests passed. All of this was repeated after the second version
+of the lab added the `nms` icon and its rule.
 
 ## Build and static checks
 
 | Check | Result |
 |---|---|
-| `@onms-lab/shared-assets` unit tests (Vitest 2.1.9) | 31 of 31 passed |
+| `@onms-lab/shared-assets` unit tests (Vitest 2.1.9) | 34 of 34 passed |
 | type checks: `tsc` for the helper, `vue-tsc` 1.8.27 for both plugins | clean |
 | Vite 5.4.21 builds of both modules | `nodeInventory.es.js` 9.5 kB, `iconCatalog.es.js` 10.2 kB, `style.css` each; ASCII only; no `process.env`; Vue used through `window.Vue` |
 | Java: both `UIExtension` classes compiled with `javac --release 11` against the OIA 1.6.1 interface source | clean with `-Xlint:all` |
@@ -86,23 +154,32 @@ with the login step skipped: 2 of 2 tests passed.
 | both `blueprint.xml` files against the OSGi Blueprint 1.0.0 XSD (from Apache Aries) | valid |
 | both `features.xml` files (after Maven filtering) against the Karaf features 1.4.0 XSD | valid |
 | `docker compose config` and `podman-compose config` (1.6.0) on `compose.yml` | both parse it; defaults resolve as intended |
+| `scripts/validate-repo.sh` (JSON, XML, compose, mount sources, the watcher `.cfg`, Python, unit tests, `shellcheck -x`, executable bits, shared folder, plugin contract, helper tests and types, markdownlint), run on a fresh unpacked copy of the delivered zip after `npm ci` | all checks passed; `build-plugins.sh --no-maven` there rebuilt both modules byte-identical to the committed ones |
 | JSON Schema validation of `manifest.json`, `shellcheck` on the shell scripts, `tsc` on the Playwright spec, `markdownlint`, internal link check of all docs, rendering of every Mermaid diagram | clean |
 | Vite library mode with a 49 KB PNG import | inlined as a `data:` URI (confirms Part 1) |
 | Vite library mode with `url(/opennms/assets/shared/...)` in CSS | kept unchanged, with the "will remain unchanged to be resolved at runtime" notice |
 
 ## Not verified here: please confirm in your lab
 
-1. **The real container.** Run `scripts/verify-assets.sh --live-drop --plugins` and the Playwright
-   test in `tests/e2e` against the compose lab. They check the same things as the harness, on the
-   real stack.
-2. **Spring Security.** The anonymous access to `/assets/**` and the roles for `/rest/**` come from
+1. **The real container.** Run `scripts/lab-status.sh`, `scripts/verify-assets.sh --live-drop --plugins`
+   and the Playwright test in `tests/e2e` against the compose lab. They check the same things as
+   the harness and the stand-ins, on the real stack. The first start's duration and log output,
+   and the self-monitoring node (ICMP through the `ping_group_range` sysctl), could only be
+   checked at the level of the kernel setting.
+2. **The real Karaf deploy watcher.** That `etc/org.apache.felix.fileinstall-lab.cfg` creates a
+   second watcher, and how the KAR deployer reacts to new, changed and deleted files, comes from the
+   Karaf 4.3.10 and FileInstall 3.7.4 sources (the same mechanism as Karaf's own `deploy/`); the
+   deploy scripts were run against a stand-in. Part 6.4 shows how to watch each layer in the real
+   system.
+3. **Spring Security.** The anonymous access to `/assets/**` and the roles for `/rest/**` come from
    reading `applicationContext-spring-security.xml`. `verify-assets.sh` checks the anonymous part
    (it sends no credentials for the shared files).
-3. **The Maven/KAR build.** The POMs follow the OIA 1.6.1 `example-kar-plugin` archetype and the
+4. **The Maven/KAR build.** The POMs follow the OIA 1.6.1 `example-kar-plugin` archetype and the
    KAR module of the VeloCloud plugin (built by OpenNMS's CI), but they were not run here.
    `scripts/build-plugins.sh` runs them.
-4. **The OSGi path.** Blueprint, `UIExtensionRegistryImpl`, the JAX-RS connector and the
+5. **The OSGi path.** Blueprint, `UIExtensionRegistryImpl`, the JAX-RS connector and the
    `ProxyFilter` were traced in the source and emulated in the harness, not executed. The Karaf
-   commands in Part 6 show each layer in the real system.
-5. **Podman specifics.** The `z` relabel option and rootless user mapping follow Podman's
-   documented behaviour and were not exercised on an SELinux host.
+   commands in Part 6.4 show each layer in the real system.
+6. **Podman specifics.** The containers here ran rootful; the `z` relabel option and rootless user
+   mapping follow Podman's documented behaviour and were not exercised on an SELinux host or a
+   Podman machine (macOS, Windows).

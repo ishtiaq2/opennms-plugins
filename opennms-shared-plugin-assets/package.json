@@ -11,7 +11,7 @@
     "build:helper": "npm run build -w @onms-lab/shared-assets",
     "build:ui": "npm run build:helper && npm run build -w node-inventory-ui -w icon-catalog-ui",
     "test": "npm test -w @onms-lab/shared-assets",
-    "typecheck": "npm run typecheck --workspaces --if-present",
+    "typecheck": "npm run build:helper && npm run typecheck --workspaces --if-present",
     "check:plugins": "python3 scripts/check_plugins.py"
   },
   "engines": {

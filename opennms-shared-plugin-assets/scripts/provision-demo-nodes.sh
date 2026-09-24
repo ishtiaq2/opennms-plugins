@@ -2,10 +2,14 @@
 # Import a small requisition whose nodes exercise every rule in shared-assets/manifest.json.
 # The addresses are in 192.0.2.0/24 (TEST-NET-1, RFC 5737): nothing answers, and with an
 # empty foreign-source definition (no detectors) OpenNMS does not even try to scan them.
+#
+#   scripts/provision-demo-nodes.sh            # login and URL from .env (scripts/lib.sh)
 set -euo pipefail
-ONMS_URL=${ONMS_URL:-http://localhost:8980}
-AUTH="${ONMS_USER:-admin}:${ONMS_PASS:-admin}"
+# shellcheck source=scripts/lib.sh
+. "$(dirname "$0")/lib.sh"
+AUTH="$ONMS_USER:$ONMS_PASS"
 FS=${FOREIGN_SOURCE:-SharedAssetsLab}
+lab_check_login || exit 1
 
 curl -fsS -u "$AUTH" -H 'Content-Type: application/xml' -X POST \
   "$ONMS_URL/opennms/rest/foreignSources" --data-binary @- <<XML
