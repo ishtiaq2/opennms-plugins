@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "manifest.schema.json",
+  "title": "Shared assets manifest",
+  "description": "Catalog read by OpenNMS UI plugins. Jetty serves this directory with directory listing disabled, so plugins cannot discover files on their own; this file is how they learn what exists.",
+  "type": "object",
+  "required": ["schemaVersion", "revision", "icons", "nodeIconRules", "defaultIcon"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "revision": {
+      "description": "Bump whenever an existing file changes. Plugins append ?rev=<revision> to every URL, so a new revision bypasses the browser's 1-hour cache.",
+      "type": ["integer", "string"]
+    },
+    "description": { "type": "string" },
+    "icons": { "$ref": "#/$defs/assetMap" },
+    "images": { "$ref": "#/$defs/assetMap" },
+    "nodeIconRules": {
+      "description": "Evaluated top to bottom; the first rule whose conditions all match wins.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["icon", "match"],
+        "additionalProperties": false,
+        "properties": {
+          "icon": { "type": "string", "description": "A key of 'icons'." },
+          "match": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": false,
+            "properties": {
+              "categories": { "type": "array", "items": { "type": "string" }, "minItems": 1, "description": "Any of these surveillance category names (case-insensitive)." },
+              "sysObjectIdPrefixes": { "type": "array", "items": { "type": "string", "pattern": "^\\.?[0-9]+(\\.[0-9]+)*$" }, "minItems": 1, "description": "sysObjectID starts with one of these OIDs, on an arc boundary." },
+              "foreignSources": { "type": "array", "items": { "type": "string" }, "minItems": 1, "description": "Requisition (foreign source) name, exact match." },
+              "labelPattern": { "type": "string", "description": "JavaScript regular expression, tested case-insensitively against the node label." }
+            }
+          }
+        }
+      }
+    },
+    "defaultIcon": { "type": "string", "description": "Icon key used when no rule matches." }
+  },
+  "$defs": {
+    "assetMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["path"],
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string", "pattern": "^(?!/)(?!.*(^|/)\\.\\.?(/|$))[A-Za-z0-9._/-]+$", "description": "Path relative to the shared-assets root. No leading slash, no . or .. segments." },
+          "label": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "./manifest.schema.json",
+  "schemaVersion": 1,
+  "revision": 1,
+  "description": "Catalog of the shared assets served by Jetty at /opennms/assets/shared/. Plugins read it to map nodes to icons and to cache-bust URLs. Edit with scripts/assets.py so 'revision' is bumped for you.",
+  "icons": {
+    "router":   { "path": "icons/router.svg",   "label": "Router" },
+    "switch":   { "path": "icons/switch.svg",   "label": "Switch" },
+    "firewall": { "path": "icons/firewall.svg", "label": "Firewall" },
+    "server":   { "path": "icons/server.svg",   "label": "Server" },
+    "linux":    { "path": "icons/linux.svg",    "label": "Linux host (Net-SNMP)" },
+    "wifi-ap":  { "path": "icons/wifi-ap.svg",  "label": "Wireless access point" },
+    "sbc":      { "path": "icons/sbc.svg",      "label": "Single-board computer" },
+    "nms":      { "path": "icons/nms.svg",      "label": "Monitoring server (OpenNMS itself)" },
+    "unknown":  { "path": "icons/unknown.svg",  "label": "Unknown device" }
+  },
+  "images": {
+    "lab-banner": { "path": "branding/lab-banner.png", "label": "Lab banner (PNG, binary asset example)" }
+  },
+  "nodeIconRules": [
+    { "icon": "nms",      "match": { "foreignSources": ["selfmonitor"] } },
+    { "icon": "router",   "match": { "categories": ["Routers"] } },
+    { "icon": "switch",   "match": { "categories": ["Switches"] } },
+    { "icon": "firewall", "match": { "categories": ["Firewalls"] } },
+    { "icon": "wifi-ap",  "match": { "categories": ["AccessPoints"] } },
+    { "icon": "sbc",      "match": { "labelPattern": "raspberry|\\bpi\\b" } },
+    { "icon": "linux",    "match": { "sysObjectIdPrefixes": [".1.3.6.1.4.1.8072.3.2.10"] } },
+    { "icon": "server",   "match": { "categories": ["Servers"] } }
+  ],
+  "defaultIcon": "unknown"
+}

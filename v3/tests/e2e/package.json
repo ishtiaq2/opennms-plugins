@@ -1,0 +1,14 @@
+{
+  "name": "shared-assets-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Browser check against a running lab: both plugins render the shared icons, within the OpenNMS CSP.",
+  "scripts": {
+    "install-browser": "playwright install chromium",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.0",
+    "@types/node": "22.20.4"
+  }
+}
