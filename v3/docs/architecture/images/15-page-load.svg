@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="948" viewBox="0 0 1100 948" role="img" aria-labelledby="t d">
+<title id="t">One page load, end to end</title>
+<desc id="d">Opening the Node Inventory plugin in the Vue UI. Every request first passes Jetty&#x27;s handlers and the web app&#x27;s filters (Steps 4 and 5); the columns show which part answers. Dashed arrows are the answers.</desc>
+<defs><marker id="aea580c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ea580c"/></marker><marker id="a7c3aed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="a2563eb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="adb2777" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#db2777"/></marker><marker id="aa16207" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a16207"/></marker></defs>
+<rect x="0.5" y="0.5" width="1099" height="947" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="24" y="36" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="21" font-weight="bold" fill="#0f172a">One page load, end to end</text>
+<text x="24" y="59" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">Opening the Node Inventory plugin in the Vue UI. Every request first passes Jetty&#x27;s handlers and the web app&#x27;s filters</text>
+<text x="24" y="78" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">(Steps 4 and 5); the columns show which part answers. Dashed arrows are the answers.</text>
+<rect x="69.0" y="114" width="134.6" height="58" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="136.3" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#0f172a">Browser</text>
+<text x="136.3" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.2">/opennms/ui/</tspan></text>
+<line x1="136.3" y1="172" x2="136.3" y2="850" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<rect x="213.6" y="114" width="134.6" height="58" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="280.9" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#7c2d12">DefaultServlet</text>
+<text x="280.9" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#7c2d12">static files</text>
+<line x1="280.9" y1="172" x2="280.9" y2="850" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<rect x="358.1" y="114" width="134.6" height="58" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="425.40000000000003" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#4c1d95">ProxyFilter</text>
+<text x="425.40000000000003" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#4c1d95">Felix, JAX-RS</text>
+<line x1="425.4" y1="172" x2="425.4" y2="850" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<rect x="502.7" y="114" width="134.6" height="58" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="570.0" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#4c1d95">ui-extension</text>
+<text x="570.0" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#4c1d95">plugin JARs</text>
+<line x1="570.0" y1="172" x2="570.0" y2="850" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<rect x="647.3" y="114" width="134.6" height="58" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="714.5999999999999" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#7c2d12">Apache CXF</text>
+<text x="714.5999999999999" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#7c2d12">REST API v2</text>
+<line x1="714.6" y1="172" x2="714.6" y2="850" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<rect x="791.9" y="114" width="134.6" height="58" rx="9" fill="#fefce8" stroke="#ca8a04" stroke-width="1.6"/>
+<text x="859.1999999999999" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#713f12">PostgreSQL</text>
+<text x="859.1999999999999" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#713f12">database</text>
+<line x1="859.1" y1="172" x2="859.1" y2="850" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<rect x="936.4" y="114" width="134.6" height="58" rx="9" fill="#fce7f3" stroke="#db2777" stroke-width="1.6"/>
+<text x="1003.6999999999999" y="135.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="middle" fill="#831843">Shared folder</text>
+<text x="1003.6999999999999" y="152.9" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#831843">your disk</text>
+<line x1="1003.7" y1="172" x2="1003.7" y2="850" stroke="#cbd5e1" stroke-width="1.6" stroke-dasharray="5 5"/>
+<path d="M138.63333333333335,214 L273.9,214" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<rect x="143.3" y="189.5" width="281.0" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="148.3" y="204.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#ea580c"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">GET /opennms/ui/</tspan><tspan>, then its JS and CSS</tspan></text>
+<path d="M278.56666666666666,250 L143.3,250" fill="none" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<rect x="143.3" y="225.5" width="193.4" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="148.3" y="240.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#ea580c"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">index.html</tspan><tspan>, the UI&#x27;s code</tspan></text>
+<path d="M138.63333333333335,300 L418.4,300" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="143.3" y="275.5" width="187.3" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="148.3" y="290.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#7c3aed"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">GET /opennms/rest/plugins</tspan></text>
+<path d="M427.7333333333333,336 L563.0,336" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="470.2" y="311.5" width="55.0" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="497.7" y="326.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#7c3aed">JAX-RS</text>
+<path d="M567.6666666666666,372 L143.3,372" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="143.3" y="347.5" width="282.7" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="148.3" y="362.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#7c3aed"><tspan>JSON: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">labNodeInventory</tspan><tspan>, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">labIconCatalog</tspan></text>
+<path d="M138.63333333333335,422 L418.4,422" fill="none" stroke="#2563eb" stroke-width="1.8" marker-end="url(#a2563eb)" stroke-linejoin="round"/>
+<rect x="143.3" y="397.5" width="293.6" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="148.3" y="412.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#2563eb"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">GET .../module/labNodeInventory?path=...</tspan></text>
+<path d="M427.7333333333333,458 L563.0,458" fill="none" stroke="#2563eb" stroke-width="1.8" marker-end="url(#a2563eb)" stroke-linejoin="round"/>
+<rect x="470.2" y="433.5" width="55.0" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="497.7" y="448.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#2563eb">JAX-RS</text>
+<path d="M567.6666666666666,494 L143.3,494" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#a2563eb)" stroke-linejoin="round"/>
+<rect x="143.3" y="469.5" width="235.0" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="148.3" y="484.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#2563eb">plugin A&#x27;s module (JavaScript)</text>
+<rect x="141.3" y="508" width="218.8" height="21.6" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="146.3" y="522.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#64748b">(the same for labIconCatalog)</text>
+<path d="M138.63333333333335,564 L418.4,564" fill="none" stroke="#2563eb" stroke-width="1.8" marker-end="url(#a2563eb)" stroke-linejoin="round"/>
+<rect x="143.3" y="539.5" width="321.1" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="148.3" y="554.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#2563eb"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">GET .../css/labNodeInventory</tspan><tspan> (route opened)</tspan></text>
+<path d="M567.6666666666666,600 L143.3,600" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#a2563eb)" stroke-linejoin="round"/>
+<rect x="143.3" y="575.5" width="223.8" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="148.3" y="590.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#2563eb"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">style.css</tspan><tspan> from plugin A&#x27;s JAR</tspan></text>
+<path d="M138.63333333333335,650 L273.9,650" fill="none" stroke="#db2777" stroke-width="1.8" marker-end="url(#adb2777)" stroke-linejoin="round"/>
+<rect x="143.3" y="625.5" width="293.6" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="148.3" y="640.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#db2777"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">GET /opennms/assets/shared/manifest.json</tspan></text>
+<path d="M283.2333333333333,686 L996.7,686" fill="none" stroke="#db2777" stroke-width="1.8" marker-end="url(#adb2777)" stroke-linejoin="round"/>
+<rect x="584.8" y="661.5" width="115.0" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="642.3" y="676.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#db2777">reads the file</text>
+<path d="M278.56666666666666,714 L143.3,714" fill="none" stroke="#db2777" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#adb2777)" stroke-linejoin="round"/>
+<rect x="143.3" y="689.5" width="224.2" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="148.3" y="704.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#db2777"><tspan>JSON, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">no-cache</tspan><tspan>: 304 next time</tspan></text>
+<path d="M138.63333333333335,760 L707.6,760" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<rect x="143.3" y="735.5" width="187.3" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="148.3" y="750.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#ea580c"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">GET /opennms/api/v2/nodes</tspan></text>
+<path d="M716.9333333333334,796 L852.1,796" fill="none" stroke="#a16207" stroke-width="1.8" marker-end="url(#aa16207)" stroke-linejoin="round"/>
+<rect x="725.6" y="771.5" width="122.5" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="786.85" y="786.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#a16207">SQL (Hibernate)</text>
+<path d="M712.2666666666667,828 L143.3,828" fill="none" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<rect x="143.3" y="803.5" width="122.5" height="22.2" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="148.3" y="818.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#ea580c">JSON: the nodes</text>
+<circle cx="36" cy="210" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="214.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">1</text>
+<circle cx="36" cy="296" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="300.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">2</text>
+<circle cx="36" cy="418" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="422.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">3</text>
+<circle cx="36" cy="560" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="564.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">4</text>
+<circle cx="36" cy="646" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="650.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">5</text>
+<circle cx="36" cy="756" r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="36" y="760.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">6</text>
+<rect x="24" y="866" width="1052" height="76" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="48" y="888" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#334155">Then the images</text>
+<text x="36" y="906.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">GET /opennms/assets/shared/icons/router.svg?rev=1</tspan><tspan> for each node: the DefaultServlet answers from the shared folder as in</tspan></text>
+<text x="36" y="923.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">step 5, then the browser keeps the file for an hour. The page never asks Karaf for an image, and never talks to PostgreSQL itself.</text>
+<circle cx="28" cy="870" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="28" y="874.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">7</text>
+</svg>

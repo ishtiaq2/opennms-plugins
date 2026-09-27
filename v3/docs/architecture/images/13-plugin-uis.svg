@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="800" viewBox="0 0 1100 800" role="img" aria-labelledby="t d">
+<title id="t">Plugin A and plugin B: many UIs from one server</title>
+<desc id="d">Both plugins are served by the same Jetty, the same /opennms web app and the same REST endpoint. The extension id in the URL decides which bundle&#x27;s JAR the file comes from; routes after # never reach the server.</desc>
+<defs><marker id="a2563eb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect x="0.5" y="0.5" width="1099" height="799" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="24" y="36" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="21" font-weight="bold" fill="#0f172a">Plugin A and plugin B: many UIs from one server</text>
+<text x="24" y="59" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">Both plugins are served by the same Jetty, the same /opennms web app and the same REST endpoint. The extension id in</text>
+<text x="24" y="78" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">the URL decides which bundle&#x27;s JAR the file comes from; routes after # never reach the server.</text>
+<rect x="24" y="114" width="300" height="470" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="38" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Browser: the Vue UI</text>
+<rect x="40" y="154" width="268" height="196" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="52" y="176" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#334155"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13.0">/opennms/ui/</tspan></text>
+<text x="52" y="194.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155">menu Plugins:</text>
+<text x="52" y="212.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155">- Shared Assets: Node Inventory</text>
+<text x="52" y="230.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155">- Shared Assets: Icon Catalog</text>
+<text x="52" y="248.67" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155"></text>
+<text x="52" y="266.61" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155">one route per plugin, handled</text>
+<text x="52" y="284.54999999999995" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#334155">in the browser:</text>
+<rect x="40" y="366" width="268" height="94" rx="9" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="52" y="388" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#1e3a8a">Node Inventory (A)</text>
+<text x="52" y="406.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">#/plugins/labNodeInventory/</tspan></text>
+<text x="52" y="424.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">node-inventory/</tspan></text>
+<text x="52" y="442.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">nodeInventory.es.js</tspan></text>
+<rect x="40" y="474" width="268" height="94" rx="9" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="52" y="496" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#1e3a8a">Icon Catalog (B)</text>
+<text x="52" y="514.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">#/plugins/labIconCatalog/</tspan></text>
+<text x="52" y="532.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">icon-catalog/</tspan></text>
+<text x="52" y="550.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">iconCatalog.es.js</tspan></text>
+<rect x="344" y="114" width="400" height="470" rx="12" fill="#fff7ed" stroke="#ea580c" stroke-width="1.8"/>
+<text x="358" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c2d12">Requests to the one server (port 8980)</text>
+<rect x="360" y="154" width="368" height="52" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="384" y="175" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">GET /opennms/ui/</tspan></text>
+<text x="372" y="193.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>DefaultServlet: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">ui/index.html</tspan><tspan>, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">ui/assets/*</tspan></text>
+<circle cx="364" cy="158" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="364" y="162.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="360" y="218" width="368" height="52" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="384" y="239" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#4c1d95"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">GET /opennms/rest/plugins</tspan></text>
+<text x="372" y="257.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">OSGi: the registry, as JSON: A and B</text>
+<circle cx="364" cy="222" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="364" y="226.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">2</text>
+<rect x="360" y="282" width="368" height="70" rx="9" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="384" y="303" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">GET .../ui-extension/module/</tspan></text>
+<text x="372" y="321.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">labNodeInventory</tspan></text>
+<text x="372" y="338.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">?path=node-inventory/nodeInventory.es.js</tspan></text>
+<circle cx="364" cy="286" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="364" y="290.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">3</text>
+<rect x="360" y="364" width="368" height="70" rx="9" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="384" y="385" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">GET .../ui-extension/module/</tspan></text>
+<text x="372" y="403.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">labIconCatalog</tspan></text>
+<text x="372" y="420.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">?path=icon-catalog/iconCatalog.es.js</tspan></text>
+<circle cx="364" cy="368" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="364" y="372.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">4</text>
+<rect x="360" y="446" width="368" height="52" rx="9" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="384" y="467" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">GET .../ui-extension/css/labNodeInventory</tspan></text>
+<text x="372" y="485.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">node-inventory/style.css</tspan><tspan> of A</tspan></text>
+<circle cx="364" cy="450" r="12" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="364" y="454.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#ffffff">5</text>
+<rect x="764" y="114" width="312" height="470" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="778" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Two bundles, two JARs</text>
+<rect x="780" y="154" width="280" height="150" rx="9" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="792" y="176" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#1e3a8a">Node Inventory bundle</text>
+<text x="792" y="194.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">UIExtension</tspan><tspan> id </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">labNodeInventory</tspan></text>
+<text x="792" y="211.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan>root </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">node-inventory</tspan></text>
+<text x="792" y="228.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a">JAR entries:</text>
+<text x="792" y="245.875" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">node-inventory/nodeInventory.es.js</tspan></text>
+<text x="792" y="263.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">node-inventory/style.css</tspan></text>
+<rect x="780" y="320" width="280" height="132" rx="9" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="792" y="342" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#1e3a8a">Icon Catalog bundle</text>
+<text x="792" y="360.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">UIExtension</tspan><tspan> id </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">labIconCatalog</tspan></text>
+<text x="792" y="377.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan>root </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">icon-catalog</tspan></text>
+<text x="792" y="394.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a">JAR entry:</text>
+<text x="792" y="411.875" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">icon-catalog/iconCatalog.es.js</tspan></text>
+<rect x="780" y="468" width="280" height="100" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="792" y="490" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#334155">How an id finds a JAR</text>
+<text x="792" y="508.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">the registry gives the extension,</text>
+<text x="792" y="525.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">getExtensionClass()</tspan><tspan> its bundle,</tspan></text>
+<text x="792" y="542.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">bundle.getResource(path)</tspan><tspan> the file</tspan></text>
+<path d="M728,317.0 L746,317.0 L746,214 L778,214" fill="none" stroke="#2563eb" stroke-width="1.8" marker-end="url(#a2563eb)" stroke-linejoin="round"/>
+<path d="M728,399.0 L756,399.0 L756,374 L778,374" fill="none" stroke="#2563eb" stroke-width="1.8" marker-end="url(#a2563eb)" stroke-linejoin="round"/>
+<path d="M728,472.0 L738,472.0 L738,284 L778,284" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-dasharray="4 3" marker-end="url(#a2563eb)" stroke-linejoin="round"/>
+<rect x="24" y="604" width="1052" height="180" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="38" y="626" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Other ways a bundle puts a UI or an API on the same server</text>
+<rect x="40" y="642" width="330" height="124" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="52" y="664" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">JAX-RS resource</text>
+<text x="52" y="682.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan>JSON or text under </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">/opennms/rest/...</tspan><tspan>,</tspan></text>
+<text x="52" y="699.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan>like </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">UIExtensionService</tspan><tspan> itself</tspan></text>
+<text x="52" y="716.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">(Step 12)</text>
+<rect x="386" y="642" width="330" height="124" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="398" y="664" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">Whiteboard servlet</text>
+<text x="398" y="682.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">a whole page, e.g. the Vaadin</text>
+<text x="398" y="699.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">wallboard configuration at</text>
+<text x="398" y="716.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">/opennms/admin/wallboard-config/</tspan></text>
+<rect x="732" y="642" width="330" height="124" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="744" y="664" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">PageNavEntry service</text>
+<text x="744" y="682.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">a link in the classic admin page,</text>
+<text x="744" y="699.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">exported to the OpenNMS registry</text>
+<text x="744" y="716.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">(Step 11)</text>
+</svg>

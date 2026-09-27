@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="800" viewBox="0 0 1100 800" role="img" aria-labelledby="t d">
+<title id="t">Around the core: what else the process talks to</title>
+<desc id="d">The one OpenNMS process and its neighbours; Step 16 explains each box. In this lab only PostgreSQL runs in a container of its own.</desc>
+<defs><marker id="aea580c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ea580c"/></marker><marker id="a94a3b8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker><marker id="aa16207" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a16207"/></marker><marker id="a7c3aed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker></defs>
+<rect x="0.5" y="0.5" width="1099" height="799" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="24" y="36" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="21" font-weight="bold" fill="#0f172a">Around the core: what else the process talks to</text>
+<text x="24" y="59" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">The one OpenNMS process and its neighbours; Step 16 explains each box. In this lab only PostgreSQL runs in a</text>
+<text x="24" y="78" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">container of its own.</text>
+<rect x="380" y="310" width="340" height="238" rx="12" fill="#ffffff" stroke="#0f172a" stroke-width="2.6"/>
+<text x="394" y="332" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">The OpenNMS JVM</text>
+<rect x="396" y="348" width="308" height="56" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+<text x="408" y="370" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#064e3b">Daemons</text>
+<text x="408" y="388.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#064e3b"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">Eventd</tspan><tspan>: the event bus in the process</tspan></text>
+<rect x="396" y="414" width="308" height="56" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="408" y="436" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c2d12">Jetty and the web app</text>
+<text x="408" y="454.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#7c2d12">Spring Security: web UI and REST</text>
+<rect x="396" y="480" width="308" height="56" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="408" y="502" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">Karaf and Felix</text>
+<text x="408" y="520.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">OSGi bundles, plugins, SSH shell</text>
+<rect x="24" y="114" width="320" height="100" rx="9" fill="#f3f4f6" stroke="#6b7280" stroke-width="1.6"/>
+<text x="36" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#111827">People and tools</text>
+<text x="36" y="154.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#111827"><tspan>browsers and REST clients: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">8980</tspan></text>
+<text x="36" y="171.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#111827"><tspan>Karaf shell over SSH: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">8101</tspan></text>
+<text x="36" y="188.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#111827"><tspan>the same accounts: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">etc/users.xml</tspan></text>
+<rect x="756" y="114" width="320" height="100" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="768" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#334155">Network devices</text>
+<text x="768" y="154.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">polled and collected from (ICMP,</text>
+<text x="768" y="171.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">SNMP, HTTP, ...); SNMP traps</text>
+<text x="768" y="188.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155"><tspan>arrive on </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">1162/udp</tspan><tspan> (Trapd)</tspan></text>
+<rect x="24" y="364" width="320" height="100" rx="9" fill="#fefce8" stroke="#ca8a04" stroke-width="1.6"/>
+<text x="36" y="386" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#713f12"><tspan>Configuration: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13.0">etc/</tspan></text>
+<text x="36" y="404.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#713f12">XML and properties for the daemons,</text>
+<text x="36" y="421.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#713f12"><tspan>Karaf&#x27;s </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">.cfg</tspan><tspan> files (ConfigAdmin)</tspan></text>
+<text x="36" y="438.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#713f12"><tspan>a volume in this lab: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">onms-etc</tspan></text>
+<rect x="756" y="364" width="320" height="100" rx="9" fill="#fefce8" stroke="#ca8a04" stroke-width="1.6"/>
+<text x="768" y="386" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#713f12">PostgreSQL</text>
+<text x="768" y="404.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#713f12">nodes, events, alarms, outages, ...</text>
+<text x="768" y="421.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#713f12">schema by the installer (Step 2)</text>
+<text x="768" y="438.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#713f12"><tspan>one pool: the </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">dataSource</tspan></text>
+<rect x="24" y="614" width="320" height="100" rx="9" fill="#fefce8" stroke="#ca8a04" stroke-width="1.6"/>
+<text x="36" y="636" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#713f12"><tspan>Logs: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13.0">logs/</tspan></text>
+<text x="36" y="654.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#713f12"><tspan>one file per prefix: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">manager.log</tspan><tspan>,</tspan></text>
+<text x="36" y="671.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#713f12"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">web.log</tspan><tspan>, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">jetty-server.log</tspan><tspan>, ...</tspan></text>
+<text x="36" y="688.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#713f12"><tspan>and </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">karaf.log</tspan><tspan> from Pax Logging</tspan></text>
+<rect x="756" y="614" width="320" height="100" rx="9" fill="#fefce8" stroke="#ca8a04" stroke-width="1.6"/>
+<text x="768" y="636" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#713f12"><tspan>Time series: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13.0">/opennms-data/rrd/</tspan></text>
+<text x="768" y="654.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#713f12">RRD files (RRDtool) in the image&#x27;s</text>
+<text x="768" y="671.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#713f12">default strategy; graphs read</text>
+<text x="768" y="688.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#713f12">them back</text>
+<rect x="380" y="654" width="340" height="124" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="392" y="676" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">Minion and Sentinel (not in the lab)</text>
+<text x="392" y="694.125" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">separate Karaf processes built from</text>
+<text x="392" y="711.375" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">the same kind of bundles: polling near</text>
+<text x="392" y="728.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">devices, or scaled-out processing;</text>
+<text x="392" y="745.875" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">they reach the core over a broker or gRPC</text>
+<path d="M344,164 L400,310" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#aea580c)" stroke-linejoin="round"/>
+<path d="M756,164 L700,310" fill="none" stroke="#94a3b8" stroke-width="1.8" marker-start="url(#a94a3b8)" marker-end="url(#a94a3b8)" stroke-linejoin="round"/>
+<path d="M344,414 L378,414" fill="none" stroke="#a16207" stroke-width="1.8" marker-start="url(#aa16207)" marker-end="url(#aa16207)" stroke-linejoin="round"/>
+<path d="M756,414 L722,414" fill="none" stroke="#a16207" stroke-width="1.8" marker-start="url(#aa16207)" marker-end="url(#aa16207)" stroke-linejoin="round"/>
+<path d="M400,550 L344,664" fill="none" stroke="#a16207" stroke-width="1.8" marker-end="url(#aa16207)" stroke-linejoin="round"/>
+<path d="M756,664 L700,550" fill="none" stroke="#a16207" stroke-width="1.8" marker-start="url(#aa16207)" marker-end="url(#aa16207)" stroke-linejoin="round"/>
+<path d="M550,652 L550,550" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+</svg>

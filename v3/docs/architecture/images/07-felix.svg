@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="790" viewBox="0 0 1100 790" role="img" aria-labelledby="t d">
+<title id="t">Felix, the OSGi framework under Karaf</title>
+<desc id="d">Felix implements the OSGi core: bundles with class loaders of their own, their life cycle, and a registry of services. Karaf is the distribution around it; several Felix sub-projects run inside it as ordinary bundles.</desc>
+<defs><marker id="a7c3aed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker></defs>
+<rect x="0.5" y="0.5" width="1099" height="789" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="24" y="36" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="21" font-weight="bold" fill="#0f172a">Felix, the OSGi framework under Karaf</text>
+<text x="24" y="59" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">Felix implements the OSGi core: bundles with class loaders of their own, their life cycle, and a registry of services.</text>
+<text x="24" y="78" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">Karaf is the distribution around it; several Felix sub-projects run inside it as ordinary bundles.</text>
+<rect x="24" y="114" width="516" height="472" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="38" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">The layers</text>
+<rect x="40" y="154" width="484" height="70" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="52" y="176" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">Karaf 4.3.10: the distribution</text>
+<text x="52" y="194.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">features and KARs, deployers, SSH shell, JAAS login,</text>
+<text x="52" y="212.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan>logging (Pax Logging), the files in </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">etc/</tspan></text>
+<rect x="40" y="238" width="484" height="282" rx="12" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="54" y="260" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">Felix 6.0.5: the OSGi framework (core R7)</text>
+<rect x="56" y="276" width="452" height="70" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="68" y="298" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Service layer</text>
+<text x="68" y="316.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">a registry of objects by interface name and</text>
+<text x="68" y="334.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">properties; LDAP-filter look-ups; change events</text>
+<rect x="56" y="356" width="452" height="70" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="68" y="378" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Life-cycle layer</text>
+<text x="68" y="396.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">install, resolve, start, stop, update,</text>
+<text x="68" y="414.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">uninstall; start levels set the boot order</text>
+<rect x="56" y="436" width="452" height="70" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="68" y="458" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">Module layer</text>
+<text x="68" y="476.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>one class loader per bundle; each </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">Import-Package</tspan></text>
+<text x="68" y="494.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>is wired to another bundle&#x27;s </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">Export-Package</tspan></text>
+<rect x="40" y="534" width="484" height="38" rx="9" fill="#ffffff" stroke="#0f172a" stroke-width="1.6"/>
+<text x="282.0" y="555.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="middle" fill="#0f172a">the JVM: the one OpenNMS process (Step 2)</text>
+<rect x="560" y="114" width="516" height="300" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="574" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#0f172a">A bundle&#x27;s life cycle</text>
+<rect x="584" y="170" width="116" height="38" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="642.0" y="190.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#4c1d95">INSTALLED</text>
+<rect x="764" y="170" width="116" height="38" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="822.0" y="190.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#4c1d95">RESOLVED</text>
+<rect x="944" y="170" width="116" height="38" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="1002.0" y="190.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#4c1d95">STARTING</text>
+<rect x="584" y="290" width="116" height="38" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="642.0" y="310.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#4c1d95">UNINSTALLED</text>
+<rect x="764" y="290" width="116" height="38" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="822.0" y="310.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#4c1d95">STOPPING</text>
+<rect x="944" y="290" width="116" height="38" rx="9" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="1002.0" y="310.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="middle" fill="#1e3a8a">ACTIVE</text>
+<path d="M700,189 L762,189" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="700.8" y="167" width="60.4" height="21.6" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="731" y="181.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#7c3aed">resolve</text>
+<path d="M880,189 L942,189" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="888.0" y="167" width="46.0" height="21.6" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="911" y="181.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#7c3aed">start</text>
+<path d="M1002,208 L1002,288" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<path d="M942,309 L882,309" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="891.6" y="287" width="38.8" height="21.6" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="911" y="301.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#7c3aed">stop</text>
+<path d="M822,288 L822,210" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<path d="M642,208 L642,288" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="604.6" y="240" width="74.8" height="21.6" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="642" y="254.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#7c3aed">uninstall</text>
+<rect x="584" y="346" width="476" height="56" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
+<text x="596" y="366.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">RESOLVED: every import is wired to an exporter.</text>
+<text x="596" y="383.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#334155">ACTIVE: started; Blueprint or DS build its services.</text>
+<rect x="560" y="430" width="516" height="156" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="574" y="452" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">The system bundle (id 0)</text>
+<rect x="576" y="466" width="484" height="104" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="588" y="486.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a">the framework itself. It exports the JDK&#x27;s packages plus</text>
+<text x="588" y="503.75" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>the 1,383 packages listed in </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">etc/custom.properties</tspan><tspan>,</tspan></text>
+<text x="588" y="521.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>183 of them </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">org.opennms.*</tspan><tspan>: bundles use the same classes</tspan></text>
+<text x="588" y="538.25" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan>from </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">lib/</tspan><tspan> as the daemons do (Steps 9 and 11).</tspan></text>
+<rect x="24" y="604" width="1052" height="150" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="38" y="626" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">Felix sub-projects that run as bundles in OpenNMS</text>
+<rect x="40" y="642" width="196" height="70" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="52" y="663.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="start" fill="#4c1d95">FileInstall 3.7.4</text>
+<text x="52" y="681.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">watches folders:</text>
+<text x="52" y="698.875" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">etc/*.cfg</tspan><tspan>, </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">deploy/</tspan></text>
+<rect x="246" y="642" width="196" height="70" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="258" y="663.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="start" fill="#4c1d95">ConfigAdmin 1.9.26</text>
+<text x="258" y="681.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">configurations</text>
+<text x="258" y="698.875" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan>from </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">.cfg</tspan><tspan> files</tspan></text>
+<rect x="452" y="642" width="196" height="70" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="464" y="663.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="start" fill="#4c1d95">HTTP bridge 4.1.6</text>
+<text x="464" y="681.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">servlets from bundles,</text>
+<text x="464" y="698.875" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">inside Jetty (Step 12)</text>
+<rect x="658" y="642" width="196" height="70" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="670" y="663.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="start" fill="#4c1d95">Metatype and more</text>
+<text x="670" y="681.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">helpers installed from</text>
+<text x="670" y="698.875" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="11.6">startup.properties</tspan></text>
+<rect x="864" y="642" width="196" height="70" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="876" y="663.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="start" fill="#4c1d95">Gogo</text>
+<text x="876" y="681.625" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">the command runtime</text>
+<text x="876" y="698.875" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">of Karaf&#x27;s shell</text>
+<text x="40" y="738" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12.5" font-weight="normal" text-anchor="start" fill="#4c1d95">Not Felix, used alongside: Aries Blueprint (XML wiring), Pax Logging, Pax URL (mvn: URLs), the JAX-RS connector.</text>
+</svg>

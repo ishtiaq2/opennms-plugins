@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="810" viewBox="0 0 1100 810" role="img" aria-labelledby="t d">
+<title id="t">Two service registries and the bridge between them</title>
+<desc id="d">Daemons and the web app find each other in the OpenNMS service registry; bundles use the OSGi one. The bridge, started by the web app next to Karaf, copies registrations across in both directions.</desc>
+<defs><marker id="a7c3aed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="a059669" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker></defs>
+<rect x="0.5" y="0.5" width="1099" height="809" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="24" y="36" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="21" font-weight="bold" fill="#0f172a">Two service registries and the bridge between them</text>
+<text x="24" y="59" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">Daemons and the web app find each other in the OpenNMS service registry; bundles use the OSGi one. The bridge,</text>
+<text x="24" y="78" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" fill="#475569">started by the web app next to Karaf, copies registrations across in both directions.</text>
+<rect x="24" y="114" width="320" height="66" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+<text x="36" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#064e3b">OpenNMS service registry</text>
+<text x="36" y="154.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#064e3b"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">DefaultServiceRegistry</tspan><tspan>: used by the</tspan></text>
+<text x="36" y="172.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#064e3b">Spring contexts and the web app</text>
+<rect x="372" y="114" width="268" height="66" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="384" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">OnmsOSGiBridgeActivator</text>
+<text x="384" y="154.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">started by WebAppListener,</text>
+<text x="384" y="172.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">right after Karaf (Step 6)</text>
+<rect x="668" y="114" width="408" height="66" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="680" y="136" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">OSGi service registry (Felix)</text>
+<text x="680" y="154.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">used by every bundle: Blueprint references,</text>
+<text x="680" y="172.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">service trackers, service listeners</text>
+<rect x="24" y="202" width="1052" height="138" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="38" y="223.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="start" fill="#0f172a">1. From OpenNMS to OSGi: every registration, for example the DAOs</text>
+<rect x="40" y="238" width="290" height="88" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+<text x="52" y="260" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#064e3b">daoContext (Spring)</text>
+<text x="52" y="278.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#064e3b"><tspan>bean </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">nodeDao</tspan><tspan>, published with</tspan></text>
+<text x="52" y="296.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#064e3b"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">&lt;onmsgi:service interface=</tspan></text>
+<text x="52" y="314.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#064e3b"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">&quot;...netmgt.dao.api.NodeDao&quot;&gt;</tspan></text>
+<rect x="372" y="238" width="268" height="88" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="384" y="259.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">registered in OSGi as well, by</text>
+<text x="384" y="276.94" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">the system bundle, with</text>
+<text x="384" y="294.88" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">registration.source=onms</tspan></text>
+<rect x="668" y="238" width="392" height="88" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="680" y="260" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">api-layer (Blueprint)</text>
+<text x="680" y="278.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">&lt;reference interface=&quot;...dao.api.NodeDao&quot;&gt;</tspan></text>
+<text x="680" y="296.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">wraps it and registers the Integration API&#x27;s</text>
+<text x="680" y="314.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">org.opennms.integration.api.v1.dao.NodeDao</tspan></text>
+<path d="M330,282 L370,282" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<path d="M640,282 L666,282" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="24" y="356" width="1052" height="124" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="38" y="377.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="start" fill="#0f172a">2. From OSGi to OpenNMS: only services marked registration.export</text>
+<rect x="668" y="392" width="392" height="72" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="680" y="414" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">karaf-health bundle</text>
+<text x="680" y="432.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan>registers </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">KarafHealthService</tspan><tspan> with</tspan></text>
+<text x="680" y="450.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">registration.export=true</tspan></text>
+<rect x="372" y="392" width="268" height="72" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.6"/>
+<text x="384" y="413.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">registered in the OpenNMS</text>
+<text x="384" y="430.94" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a">registry as well, with</text>
+<text x="384" y="448.88" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#0f172a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">registration.source=osgi</tspan></text>
+<rect x="40" y="392" width="290" height="72" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+<text x="52" y="414" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#064e3b">KarafStartupMonitor</text>
+<text x="52" y="432.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#064e3b">waits for it (Step 3)</text>
+<path d="M666,428 L642,428" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<path d="M370,428 L332,428" fill="none" stroke="#059669" stroke-width="1.8" marker-end="url(#a059669)" stroke-linejoin="round"/>
+<rect x="24" y="496" width="1052" height="112" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="38" y="517.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="start" fill="#0f172a">3. The same way: a menu link that comes from a bundle</text>
+<rect x="668" y="532" width="392" height="62" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="680" y="554" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">dashboard bundle (Vaadin)</text>
+<text x="680" y="572.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan>a </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">PageNavEntry</tspan><tspan> for </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">Page=admin</tspan><tspan>, exported</tspan></text>
+<rect x="40" y="532" width="290" height="62" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+<text x="52" y="554" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c2d12">admin/index.jsp</text>
+<text x="52" y="572.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#7c2d12"><tspan>links for </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">(Page=admin)</tspan><tspan> entries</tspan></text>
+<path d="M666,563 L332,563" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<rect x="450.6" y="543" width="110.8" height="21.6" rx="5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="506" y="557.0" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#7c3aed">copied like 2.</text>
+<rect x="24" y="624" width="1052" height="158" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="38" y="645.5" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13.5" font-weight="bold" text-anchor="start" fill="#0f172a">4. Inside OSGi only: the UI extensions are never exported</text>
+<rect x="40" y="662" width="230" height="102" rx="9" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="52" y="684" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#1e3a8a">Plugins A and B</text>
+<text x="52" y="702.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#1e3a8a">each registers a</text>
+<text x="52" y="720.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#1e3a8a"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">UIExtension</tspan><tspan> service</tspan></text>
+<rect x="292" y="662" width="250" height="102" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="304" y="684" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">api-layer</text>
+<text x="304" y="702.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan>a </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">reference-list</tspan><tspan> of</tspan></text>
+<text x="304" y="720.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">UIExtension</tspan><tspan>s: </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">onBind()</tspan></text>
+<text x="304" y="738.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan>fills </tspan><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">UIExtensionRegistry</tspan></text>
+<rect x="564" y="662" width="250" height="102" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="576" y="684" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">ui-extension</text>
+<text x="576" y="702.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">UIExtensionService</tspan><tspan>, a JAX-RS</tspan></text>
+<text x="576" y="720.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">resource with</text>
+<text x="576" y="738.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">application-path=/rest</tspan></text>
+<rect x="836" y="662" width="224" height="102" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="848" y="684" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#4c1d95">JAX-RS connector</text>
+<text x="848" y="702.85" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">publishes it under</text>
+<text x="848" y="720.79" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95"><tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12.1">/opennms/rest/plugins</tspan></text>
+<text x="848" y="738.73" font-family="Helvetica, Arial, 'DejaVu Sans', sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#4c1d95">(Steps 12 and 13)</text>
+<path d="M270,713 L290,713" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<path d="M542,713 L562,713" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+<path d="M814,713 L834,713" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#a7c3aed)" stroke-linejoin="round"/>
+</svg>
