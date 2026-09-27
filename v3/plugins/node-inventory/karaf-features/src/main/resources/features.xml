@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features name="opennms-lab-node-inventory-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.4.0">
+
+    <feature name="opennms-lab-node-inventory" description="Lab :: Shared Assets :: Node Inventory" version="${project.version}">
+        <!-- Both are already present in OpenNMS; listed so Karaf can resolve the bundle's imports. -->
+        <feature dependency="true">aries-blueprint</feature>
+        <feature version="${opennms.api.version}" dependency="true">opennms-integration-api</feature>
+        <bundle>mvn:org.example.opennms.lab/node-inventory-plugin/${project.version}</bundle>
+    </feature>
+
+</features>

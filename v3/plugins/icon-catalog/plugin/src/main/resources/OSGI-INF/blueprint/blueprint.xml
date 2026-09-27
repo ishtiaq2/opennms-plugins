@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0
+                               https://osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+
+    <!--
+      The plugin's contract with the OpenNMS UI. These four values must agree with ui/vite.config.ts:
+        extensionId       key the module assigns on window (window['labIconCatalog'] = component)
+        resourceRootPath  folder inside this JAR that holds the module: ONE path segment, no '/'
+                          (the UI puts it in a route parameter and splits the URL on '/')
+        moduleFileName    file name must contain ".es" (the UI parses it with /^(.*?)\.es/)
+      scripts/check_plugins.py verifies all of this after "npm run build".
+    -->
+    <service interface="org.opennms.integration.api.v1.ui.UIExtension">
+        <bean class="org.example.opennms.lab.iconcatalog.IconCatalogUIExtension">
+            <property name="extensionId" value="labIconCatalog"/>
+            <property name="menuEntry" value="Shared Assets: Icon Catalog"/>
+            <property name="resourceRootPath" value="icon-catalog"/>
+            <property name="moduleFileName" value="iconCatalog.es.js"/>
+        </bean>
+    </service>
+
+</blueprint>

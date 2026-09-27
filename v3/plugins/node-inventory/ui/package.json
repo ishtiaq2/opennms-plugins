@@ -1,0 +1,22 @@
+{
+  "name": "node-inventory-ui",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Vue 3 module for the Node Inventory UI extension. Built into ../plugin/src/main/resources/node-inventory/.",
+  "scripts": {
+    "build": "vite build",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@onms-lab/shared-assets": "^1.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "5.2.4",
+    "typescript": "5.4.5",
+    "vite": "5.4.21",
+    "vite-plugin-externals": "0.6.2",
+    "vue": "3.3.7",
+    "vue-tsc": "1.8.27"
+  }
+}

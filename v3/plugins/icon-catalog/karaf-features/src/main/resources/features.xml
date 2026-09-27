@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features name="opennms-lab-icon-catalog-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.4.0">
+
+    <feature name="opennms-lab-icon-catalog" description="Lab :: Shared Assets :: Icon Catalog" version="${project.version}">
+        <!-- Both are already present in OpenNMS; listed so Karaf can resolve the bundle's imports. -->
+        <feature dependency="true">aries-blueprint</feature>
+        <feature version="${opennms.api.version}" dependency="true">opennms-integration-api</feature>
+        <bundle>mvn:org.example.opennms.lab/icon-catalog-plugin/${project.version}</bundle>
+    </feature>
+
+</features>

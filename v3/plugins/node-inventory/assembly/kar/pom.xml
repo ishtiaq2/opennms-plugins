@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.example.opennms.lab</groupId>
+        <artifactId>node-inventory-assembly</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>node-inventory-kar</artifactId>
+    <packaging>kar</packaging>
+    <name>Lab :: Shared Assets :: Node Inventory :: Assembly :: KAR</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.karaf.tooling</groupId>
+                <artifactId>karaf-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>create-kar</id>
+                        <goals>
+                            <goal>kar</goal>
+                        </goals>
+                        <configuration>
+                            <featuresFile>mvn:org.example.opennms.lab/node-inventory-karaf-features/${project.version}/xml</featuresFile>
+                            <finalName>opennms-lab-node-inventory-plugin</finalName>
+                            <ignoreDependencyFlag>true</ignoreDependencyFlag>
+                            <archive>
+                                <manifestEntries>
+                                    <!-- true (Karaf's default): installing the KAR also installs its feature,
+                                         so dropping it into deploy/ is enough for this lab.
+                                         OpenNMS's own plugins ship "false" and are enabled with
+                                         feature:install in the Karaf shell. -->
+                                    <Karaf-Feature-Start>true</Karaf-Feature-Start>
+                                </manifestEntries>
+                            </archive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.example.opennms.lab</groupId>
+            <artifactId>node-inventory-karaf-features</artifactId>
+            <version>${project.version}</version>
+            <type>xml</type>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
